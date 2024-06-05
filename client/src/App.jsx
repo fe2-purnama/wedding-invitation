@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -8,10 +9,10 @@ import NoPage from './pages/NoPage';
 import DesignPage from './pages/DesignPage';
 import TestimonialPage from './pages/TestimonialPage';
 import Login from './pages/Login';
-import UndanganBasic1 from './pages/UndanganBasic1';
-
 import UndVIP from './pages/UndVIP';
 import CardPremium from './pages/CardPremium';
+import UndBasic1 from './pages/UndBasic2';
+import Register from './pages/Register';
 
 const App = () => {
   return (
@@ -27,8 +28,9 @@ const App = () => {
         </Route>
         <Route path="/design/design3" element={<UndVIP />} />
         <Route path="/design/design2" element={<CardPremium />} />
-        <Route path="/design/design1" element={<UndanganBasic1 />} />
+        <Route path="/design/design1" element={<UndBasic1 />} />
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         
       </Routes>
     </BrowserRouter>
@@ -43,9 +45,10 @@ export default App;
 // import { BrowserRouter,  Route, Routes } from 'react-router-dom';
 
 // // import UndDiv from './pages/UndVIP';
-// import UndBasic1 from './pages/UndBasic1';
+// // import UndBasic1 from './pages/UndBasic1';
 
 // // import UndanganBasic1 from './pages/UndanganBasic1';
+// import Login from '../src/pages/Login'
 
 
 // const App = () => {
@@ -53,7 +56,7 @@ export default App;
 //     <BrowserRouter>
 //       <Routes>
            
-//           <Route path="/" element={<UndBasic1 />}>
+//           <Route path="/" element={<Login />}>
             
             
 //           </Route>  
@@ -61,6 +64,25 @@ export default App;
 //       </Routes>
 //     </BrowserRouter>
     
+//   );
+// };
+
+// // export default App;
+// import React, { useState } from 'react';
+// import Login from '../src/pages/Login';
+// import Register from '../src/pages/Register';
+
+// const App = () => {
+//   const [isRegister, setIsRegister] = useState(false);
+
+//   return (
+//     <div className="App">
+//       {isRegister ? (
+//         <Register setIsRegister={setIsRegister} />
+//       ) : (
+//         <Login setIsRegister={setIsRegister} />
+//       )}
+//     </div>
 //   );
 // };
 

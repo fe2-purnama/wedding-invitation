@@ -1,36 +1,5 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  width: 100%;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.header, .main, .footer {
-  text-align: center;
-}
 
 /* TABLE OF CONTENT
 ======================================
@@ -321,8 +290,7 @@ header {
   transition: width 1s;
 }
 
-.sub_img.active {
-}
+
 
 .sub_img:before {
   background: #FFF;
@@ -470,9 +438,7 @@ header {
   display: none
 }
 
-.player.vis {
 
-}
 
 .names {
   font: 46px Great Vibes;
@@ -936,9 +902,7 @@ header {
   top: -8px;
 }
 
-.owl-carousel:hover .owl-next, .owl-carousel:hover .owl-prev {
 
-}
 
 .owl-next {
   width: 86px;
@@ -1045,9 +1009,7 @@ header {
   background: #FFF
 }
 
-.story_wrapper {
 
-}
 
 .story_item {
   position: relative;
@@ -1229,8 +1191,7 @@ header {
 }
 
 /*# 9. Registry*/
-.registry .container {
-}
+
 
 .registry a {
   display: inline-block;
@@ -1448,8 +1409,6 @@ header {
   background-position: center;
 }
 
-.when_where .container {
-}
 
 .when_where_container {
   z-index: 2;
@@ -1662,13 +1621,7 @@ header {
 }
 
 /*# 13. Guests*/
-.guests {
 
-}
-
-.guests .container {
-
-}
 
 .guest_item {
   position: relative;
@@ -1782,7 +1735,7 @@ header {
   width: 100%;
   display: block;
   margin: auto;
-  vertical-align: middle;
+  
   opacity: 0;
   transition: opacity 1s;
   left: 0;

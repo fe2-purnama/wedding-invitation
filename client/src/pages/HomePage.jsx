@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Banner from "../assets/herobanner.gif"
 import port1 from "../assets/port1.jpeg"
@@ -5,6 +6,8 @@ import des1 from "../assets/des1.jpeg"
 import des2 from "../assets/des2.jpg"
 import des3 from "../assets/des3.png"
 import des4 from "../assets/des4.jpg"
+import bg from "../assets/lll.jpg"
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const handleGamelabClick = () => {
@@ -151,8 +154,8 @@ const HomePage = () => {
       </section>
       <section className="relative w-full h-auto flex bg-gradient-to-br from-[#F4D2D2] via-[#EEEEEE] to-[#EEEEEE]">
         <div className="w-1/2 flex items-center justify-center">
-          {/* <img src={port1} alt="section kiri" className="w-[614px] h-[631px] bg-[#D9D9D9]" /> */}
-          <div className="w-[614px] h-[631px] bg-[#D9D9D9]"></div>
+          <img src={bg} alt="section kiri" className="w-full h-full bg-[#D9D9D9]" />
+          {/* <div className="w-[614px] h-[631px] bg-[#D9D9D9]"></div> */}
         </div>
         
         {/* Right Section with Portfolio */}
@@ -172,7 +175,7 @@ const HomePage = () => {
           </div>
           <div className="mt-8">
             <button className="w-[368px] h-[54px] bg-[#C66B6B] rounded-[10px] text-[20px] text-white">
-              Click for more portfolio
+            <Link to="/portfolio">Click for more portfolio</Link>
             </button>
           </div>
         </div>
@@ -193,7 +196,7 @@ const HomePage = () => {
           
           <div className="w-[250px] h-[54px] mt-10 bg-[#C66B6B] rounded-[10px] flex items-center justify-center">
             <div className="font-istok-web font-normal text-[24px] leading-[35px] text-white">
-              Click For More
+            <Link to="/design">Click For More</Link>
             </div>
           </div>
           

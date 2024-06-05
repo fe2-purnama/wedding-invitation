@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "https://kit.fontawesome.com/3b9b00101d.js"
 import flower from "../assets/flower2.png";

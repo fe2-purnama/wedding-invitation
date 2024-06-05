@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-
 
 // Import gambar
 import HomeImage from '../assets/undanganBasic1/img/Home.png';
@@ -17,7 +17,8 @@ import GalleryImage1 from '../assets/undanganBasic1/img/14.jpeg';
 import GalleryImage2 from '../assets/undanganBasic1/img/Foto 3.jpeg';
 import GalleryImage3 from '../assets/undanganBasic1/img/Bareng.png';
 import GalleryImage4 from '../assets/undanganBasic1/img/Pre_wed.png'
-import '../assets/undanganBasic1/App.css'
+// import '../assets/undanganBasic1/App.css'
+import '../assets/undanganBasic1/undbasic.module.css'
 
 function UndBasic1() {
 
