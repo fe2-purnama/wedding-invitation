@@ -96,13 +96,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `phone`, `address`) VALUES
-(1, 'admin', 'admin@gmail.com', '123', '08932145666', 'gedangan'),
-(2, 'yardan', 'Yardan@gmail.com', '222', '089766547393', 'surabaya'),
-(3, 'asdas', 'asda@asdasd', 'adsas', '3123123', '123123'),
-(4, 'asdas', 'asda@asdasd', 'adsas', '3123123', '123123'),
-(5, 'cimeng', 'cimeng123@gmail.com', '123', '0893764432', 'surabaya'),
-(6, 'epos', 'epos@gmail.com', '123', '01823847626', 'surabaya'),
-(7, '4444', '444@gmail.com', '123', '8123761263123', '12836123712');
+(1, 'admin', 'admin@gmail.com', '123', '08932145666', 'Jogja'),
+(2, 'tes', 'tes@gmail.com', '123', '08123761263123', 'Surabaya');
 
 --
 -- Indexes for dumped tables
