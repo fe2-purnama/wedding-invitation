@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 11, 2024 at 03:19 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Jun 12, 2024 at 02:00 PM
+-- Server version: 10.11.7-MariaDB-log
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,27 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `login` (
-  `username` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `register`
---
-
-CREATE TABLE `register` (
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `no_telp` varchar(50) NOT NULL,
-  `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `email` varchar(50) NOT NULL,
+  `password` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `username`, `email`, `password`) VALUES
+(1, 'admin', 'admin@gmail.com', 123);
 
 -- --------------------------------------------------------
 
@@ -81,23 +76,43 @@ CREATE TABLE `undangan` (
   `nama` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `phone`, `address`) VALUES
+(1, 'admin', 'admin@gmail.com', '123', '08932145666', 'gedangan'),
+(2, 'yardan', 'Yardan@gmail.com', '222', '089766547393', 'surabaya'),
+(3, 'asdas', 'asda@asdasd', 'adsas', '3123123', '123123'),
+(4, 'asdas', 'asda@asdasd', 'adsas', '3123123', '123123'),
+(5, 'cimeng', 'cimeng123@gmail.com', '123', '0893764432', 'surabaya'),
+(6, 'epos', 'epos@gmail.com', '123', '01823847626', 'surabaya'),
+(7, '4444', '444@gmail.com', '123', '8123761263123', '12836123712');
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `login`
+-- Indexes for table `admin`
 --
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `password` (`password`);
-
---
--- Indexes for table `register`
---
-ALTER TABLE `register`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `password` (`password`);
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `reservasi`
@@ -121,8 +136,20 @@ ALTER TABLE `undangan`
   ADD UNIQUE KEY `nama` (`nama`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tamu`
@@ -131,15 +158,14 @@ ALTER TABLE `tamu`
   MODIFY `id_undangan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `users`
 --
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for table `login`
+-- Constraints for dumped tables
 --
-ALTER TABLE `login`
-  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`username`) REFERENCES `register` (`username`),
-  ADD CONSTRAINT `login_ibfk_2` FOREIGN KEY (`password`) REFERENCES `register` (`password`);
 
 --
 -- Constraints for table `tamu`
