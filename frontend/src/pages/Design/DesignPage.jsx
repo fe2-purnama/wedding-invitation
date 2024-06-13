@@ -70,7 +70,7 @@ const DesignPage = () => {
   };
 
   return (
-    <div className="relative w-full max-w-screen-xl mx-auto bg-white">
+    <div className="relative w-full max-w-full m-0 bg-white">
       {/* Hero Section */}
       <section className="relative w-full h-[610px] bg-[#FFFCFC] flex justify-center items-center overflow-hidden">
         {/* Ellipse 1 */}
