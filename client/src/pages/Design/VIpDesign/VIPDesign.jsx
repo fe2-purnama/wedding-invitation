@@ -410,7 +410,7 @@ const VIPDesign = () => {
                         </div>
                     </section>
                     
-                    {/* rencananya mau kasih fitur ucapan dan doa, nanti diubah kalau [perlu] */}
+                    {/* rencananya mau kasih fitur ucapan dan doa, nanti diubah kalau [perlu]
                     <section className="min-h-screen bg-white flex items-center justify-center">
                         
                         <div className="text-center">
@@ -419,7 +419,7 @@ const VIPDesign = () => {
                         </div>
                     </section>
                     {/* nanti diubah kalau perlu */}
-                    <section className="min-h-screen bg-gray-100 flex items-center justify-center">
+                    {/* <section className="min-h-screen bg-gray-100 flex items-center justify-center">
                         <form className="bg-white p-6 rounded shadow-md w-full max-w-md" onSubmit={handleSubmit}>
                         <h2 className="text-3xl mb-4 font-semibold text-gray-800"></h2>
                         <div className="mb-4">
@@ -458,7 +458,7 @@ const VIPDesign = () => {
                             Kirim
                         </button>
                         </form>
-                    </section>
+                    </section> */}
                     
                     {/* footer */}
                     <footer className="bg-gray-700 text-white">
