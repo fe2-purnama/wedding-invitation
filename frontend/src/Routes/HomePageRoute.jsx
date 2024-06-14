@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import DesignPage from "../pages/Design/DesignPage1";
+import DesignPage from "../pages/Design/DesignPage";
 import ReviewPage from "../pages/Review/ReviewPage";
 import AboutPage from "../pages/AboutPage1";
 import PremiumTemplate from "../pages/Design/PremiumDesign/PremiumTemplate";
@@ -31,7 +31,7 @@ const HomePageRoute = () => {
         <Route path="/design" element={<DesignPage />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/envelope" element={<Envelope isOpened={false} onOpen={() => {}} GuestName="Reynaldi Putra Hasli" />} />  {/* New Route */}
+        <Route path="/envelope" element={<Envelope isOpened={false} onOpen={() => {}} GuestName="Tamu" />} />  {/* New Route */}
         <Route path="/premium-invitation" element={<PremiumTemplate />} />  {/* New Route */}
         <Route path="/vip-invitation" element={<VIPDesign />} />  {/* New Route */}
         <Route path="/basic1-invitation" element={<BasicDesign1 />} />  {/* New Route */}
