@@ -18,6 +18,7 @@ import GalleryImage2 from '../../../assets/undanganBasic1/img/Foto 3.jpeg';
 import GalleryImage3 from '../../../assets/undanganBasic1/img/Bareng.png';
 import GalleryImage4 from '../../../assets/undanganBasic1/img/Pre_wed.png'
 // import './App.css'
+import MusicPlayer from '../../../components/MusicPlayer';
 
 
 const Header = () => {
@@ -336,6 +337,7 @@ function BasicDesign3() {
           </div>
         </div>
       </section>
+      <MusicPlayer />
 
     </div>
   )

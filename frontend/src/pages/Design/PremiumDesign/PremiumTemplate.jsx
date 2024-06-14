@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import './PremiumTemplate.css';
 import NavigationBar from "../../../components/PremiumTemplateComponent/NavigationBar";
 import CopyConfirmationModal from './CopyConfirmationModal'; // Import the new modal component
+import MusicPlayer from '../../../components/MusicPlayer';
 
 Modal.setAppElement('#root');
 
@@ -191,6 +192,7 @@ const PremiumTemplate = () => {
         {selectedImage && <img src={selectedImage} alt="Selected" className="modal-image" />}
       </Modal>
       <CopyConfirmationModal isOpen={copyModalIsOpen} onClose={closeCopyModal} copiedText={copiedText} />
+      <MusicPlayer />
     </div>
   );
 };

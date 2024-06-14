@@ -174,7 +174,7 @@ const DesignPage = () => {
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"
-                  onClick={() => handleNavigate(`/basic2-invitation`)}>
+                  onClick={() => handleNavigate(`/basic3-invitation`)}>
                   Basic
                 </div>
               </div>
