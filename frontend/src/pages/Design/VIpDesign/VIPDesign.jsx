@@ -8,7 +8,7 @@ import m1 from "../../../assets/kevin2.jpg"
 import w1 from "../../../assets/windu2.jpg"
 import wed from '../../../assets/wed.jpg'
 import ftr from '../../../assets/ftr.jpg'
-// import MusicPlayer from "../components/MusicPlayer"; //music player pada undangan
+ import MusicPlayer from "../../../components/MusicPlayer"; //music player pada undangan
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -117,9 +117,9 @@ const VIPDesign = () => {
             ) : (
                 <section>
                     {/* section doa */}
-                    <section className="min-h-screen bg-[#D9CCC3] flex  relative">
+                    <section className="lg:min-h-screen bg-[#D9CCC3] lg:flex  relative">
                         {/* Left side: Design and Ayat */}
-                        <div className="lg:w-2/4 flex flex-col items-center justify-center pl-20 pr-10">
+                        <div className="lg:w-2/4 flex flex-col items-center justify-center pl-10 lg:pl-20 pr-10">
                             <div className="text-center mb-6">
                             <img src="path_to_cover_image.jpg" alt="Wedding Design" className="w-full h-full object-cover opacity-90" />
                             </div>
@@ -130,12 +130,12 @@ const VIPDesign = () => {
                         </div>
 
                         {/* gambar */}
-                        <div className="lg:w-1/4 flex flex-col items-center justify-center relative">
+                        <div className="hidden lg:w-1/4 lg:flex lg:flex-col items-center justify-center relative">
                             <img src={prewed} alt="Cover Image" className="w-full h-auto object-cover" style={{ height: '100%' }} />
                         </div>
 
                         {/* hitung mundur */}
-                        <div className="lg:w-1/4 flex flex-col items-center justify-end mb-20 pb-5 mt-auto mr-20 bg-gray-100 relative" style={{ overflow: 'hidden', marginLeft: '-70px', zIndex: 1 }}>
+                        <div className="lg:w-1/4 lg:flex lg:flex-col items-center lg:justify-end lg:mb-20 pb-5 mt-10 lg:mt-auto lg:mr-20 shadow-xl lg:bg-gray-100 relative lg:ml-[-70px] mx-10" style={{ overflow: 'hidden', zIndex: 1 }}>
                             <div className="text-center z-10 mt-4">
                             <h2 className="text-3xl font-bold mb-4 text-gray-900">Countdown</h2>
                             <h3 className="text-xl font-normal mb-4 text-gray-900">Minggu, 30 Juni 2024</h3>
@@ -162,20 +162,20 @@ const VIPDesign = () => {
                     </section>
 
                     {/* pengantin */}
-                    <section className="min-h-screen bg-gradient-to-b from-[#D9CCC3] to-gray-100 flex flex-col items-center justify-center">
+                    <section className="lg:min-h-screen bg-gradient-to-b from-[#D9CCC3] to-gray-100 flex flex-col items-center justify-center px-10">
                         <div className="text-center pt-20">
                             <h1 className="text-4xl font-bold mb-4">The Brides and The Groom</h1>
                         </div>
                         <div className="flex flex-wrap w-full h-full">
                             
                             {/* Kevin Section (Kiri atas) */}
-                            <div className="w-full flex flex-col md:flex-row md:items-end md:mb-10 ml-20 mt-10">
+                            <div className="w-full flex flex-col md:flex-row md:items-end md:mb-10 lg:ml-20 mt-10">
                             <div className="w-full md:w-1/2 flex flex-row items-center mb-5 md:mb-0">
                                 <div className="w-1/2 mr-10">
                                 <div className="carousel" id="carousel1">
                                     <div className="carousel-inner">
                                     <div className="carousel-slide active">
-                                        <img src={m1} alt="Slide 1" className="object-cover w-full h-full rounded-[10px]" />
+                                        <img src={m1} alt="Slide 1" className="object-cover w-[166px] lg:w-full h-[169px] lg:h-full rounded-[10px]" />
                                     </div>
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@ const VIPDesign = () => {
                             </div>
 
                             {/* Winda Section (kanan bawah) */}
-                            <div className="w-full flex flex-col md:flex-row md:items-center md:mb-20 mr-20">
+                            <div className="w-full flex flex-col md:flex-row md:items-center md:mb-20 lg:mr-20">
                             <div className="w-full md:w-1/2"></div>
                             <div className="w-full md:w-1/2 flex flex-row items-center mb-5">
                             <div className="w-1/2 font-garamond ">
@@ -206,7 +206,7 @@ const VIPDesign = () => {
                                 <p className="text-wrap text-sm md:text-xl">
                                     Keluarga Bpk. Ruslan Jaelani dan <span className="block">Ibu Ida Sriwida A</span>
                                 </p>
-                                <div className="flex justify-start mt-3">
+                                <div className="flex justify-end lg:justify-start mt-3">
                                     <button className="rounded-full bg-slate-400 hover:bg-slate-600 duration-300">
                                     <a href="https://www.instagram.com" className="text-2xl text-white">
                                         <i className="fa-brands fa-instagram m-3"></i>
@@ -214,7 +214,7 @@ const VIPDesign = () => {
                                     </button>
                                 </div>
                                 </div>
-                                <div className="w-1/2">
+                                <div className="w-1/2 ml-10">
                                 <div className="carousel" id="carousel1">
                                     <div className="carousel-inner">
                                     <div className="carousel-slide active">
@@ -234,7 +234,7 @@ const VIPDesign = () => {
 
                     {/* video dan slider gambar */}
                     <section id="galleries" className="bg-gray-100 h-full">
-                        <div className="container mx-auto px-20 pt-10 ">
+                        <div className="container mx-auto px-10 lg:px-20 pt-10 ">
                             <div className="text-center pb-10">
                                 <h1 className="text-4xl font-bold mb-4">Our Memories</h1>
                             </div>
@@ -253,11 +253,11 @@ const VIPDesign = () => {
                                     </p>
                                 </div>
                                 </div>
-                                <div className="w-full xl:w-3/5 mt-5 xl:mt-0 pl-5">
+                                <div className="w-full xl:w-3/5 mt-5 xl:mt-0 lg:pl-5">
                                 <div className="video animate__zoomIn">
                                     <div className="relative w-full h-0 pb-[56.25%]">
                                     <iframe
-                                        src="https://www.youtube.com/embed/LHXNqbstdq0?controls=1&rel=0&mute=1&loop=1&playsinline=1&modestbranding=0&autoplay=1&enablejsapi=1&origin=https://our-wedding.link&widgetid=1"
+                                        src="https://www.youtube.com/embed/LHXNqbstdq0?controls=1&rel=0&mute=1&loop=1&playsinline=1&modestbranding=0&autoplay=0&enablejsapi=1&origin=https://our-wedding.link&widgetid=1"
                                         title="YouTube video player"
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -281,7 +281,7 @@ const VIPDesign = () => {
                                     <SwiperSlide key={index}>
                                     <div className="item mb-20">
                                         <a data-fancybox="gallery_small" href={src}>
-                                        <img src={src} alt="photo" className="w-[350px] h-[380px] object-cover"  />
+                                        <img src={src} alt="photo" className="w-[350px] h-[380px] object-cover "  />
                                         </a>
                                     </div>
                                     </SwiperSlide>
@@ -292,15 +292,15 @@ const VIPDesign = () => {
                     </section>
 
                     {/* waktu dan tempat */}
-                    <section className="bg-[#D9CCC3] relative flex flex-col items-center justify-center pb-20">
-                        <div className="w-[400px] h-[400px] top-0 left-0">
+                    <section className="bg-[#D9CCC3] relative flex flex-col items-center justify-center pb-10">
+                        <div className="w-[400px] h-[400px] top-0 ">
                             <img src={wed} alt="bjhdf" className="rounded-b-[50%] object-cover" style={{ overflow: 'hidden', marginTop: '-50px', zIndex: 1 }} />
                         </div>
-                        <section className="w-full h-full flex justify-center items-center text-center">
+                        <section className="w-full h-full lg:flex justify-center items-center text-center">
                             {/* Bagian Akad Nikah */}
-                            <div className="w-1/2 mr-10 ml-20">
+                            <div className="lg:w-1/2 mx-10 lg:mr-10 lg:ml-20">
                                 <div className="acara borders-secondary akad wow animate__ animate__fadeInUp animated" style={{ visibility: 'visible', animationName: 'fadeInUp' }}>
-                                <h2 className="text-2xl pb-2">Akad Nikah</h2>
+                                <p className="text-2xl pb-5">Akad Nikah</p>
                                 <p className="text-3xl pb-1">Jumat, 28 April 2023</p>
                                 <p className="text-1xl pb-1">
                                     pukul  09:00 WIB - selesai
@@ -314,9 +314,9 @@ const VIPDesign = () => {
                                 
                             </div>
                             {/* Bagian Resepsi */}
-                            <div className="w-1/2 ml-10 mr-20">
+                            <div className="lg:w-1/2 mx-10 lg:ml-10 lg:mr-20">
                                 <div className="acara borders-secondary resepsi wow animate__ animate__fadeInUp animated" style={{ visibility: 'visible', animationName: 'fadeInUp' }}>
-                                    <h2 className="text-2xl pb-2">Resepsi</h2>
+                                    <p className="text-2xl pb-5 mt-5 ">Resepsi</p>
                                     <p className="text-3xl pb-1">Jumat, 15 Maret 2024</p>
                                     <p className="text-1xl pb-1">
                                         pukul  15:00 WIB - selesai
@@ -344,33 +344,46 @@ const VIPDesign = () => {
                     
                     {/* rspv */}
                     <section>
-                            <section className="py-10 bg-[#D9CCC3] flex items-center justify-center">
-                            <div className="w-2/5 ">
+                        <section className="py-10 bg-[#D9CCC3] lg:flex justify-center items-center">
+                            <div className="hidden lg:w-2/5 lg:flex lg:flex-col items-center justify-center relative">
                                 <img src={wed} alt="bjhdf" className="rounded-br-[30%] rounded-tl-[30%] w-[300px] h-[400px] ml-auto mr-10 object-cover" />
-                                
                             </div>
-                            <form className="w-3/5 p-6 rounded shadow-lg w-400 ml-0 mr-20" onSubmit={handleSubmit}>
-                            <h2 className="text-3xl font-semibold  text-gray-800 pb-5">Konfirmasi Kehadiran</h2>
-                            <div className="">
-                                <input
-                                type="text"
-                                name="name"
-                                placeholder="Nama Lengkap"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-400 mb-5"
-                                />
-                                <input type="radio" name="attending" value={formData.attending} onChange={handleChange} id="hadir" className="mb-3" /><span className="text-gray-600 pl-5">Saya akan datang</span><br />
-                                <input type="radio" name="attending" value={formData.attending} onChange={handleChange} id="absen"  /><span className="text-gray-600 pl-5">Maaf, saya tidak bisa datang</span>
-                            </div>
-                            
-                            <button type="submit" className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition duration-200 mt-5">
-                                Kirim
-                            </button>
+                            <form className="lg:w-3/5 p-6 rounded shadow-lg mx-5 lg:ml-0 lg:mr-20" onSubmit={handleSubmit}>
+                                <p className="text-3xl font-semibold text-gray-800 pb-5">Konfirmasi Kehadiran</p>
+                                <div className="flex items-center mb-5">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Nama Lengkap"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
+                                    />
+                                    <button
+                                        type="button"
+                                        //onClick={handleCheckName}  Pastikan Anda memiliki fungsi handleCheckName untuk menangani klik tombol ini
+                                        className="ml-3 bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition duration-200"
+                                    >
+                                        Check
+                                    </button>
+                                </div>
+                                <div className="mb-5">
+                                    <label className="flex items-center mb-3">
+                                        <input type="radio" name="attending" value="hadir" onChange={handleChange} className="mr-2" />
+                                        <span className="text-gray-600">Saya akan datang</span>
+                                    </label>
+                                    <label className="flex items-center">
+                                        <input type="radio" name="attending" value="absen" onChange={handleChange} className="mr-2" />
+                                        <span className="text-gray-600">Maaf, saya tidak bisa datang</span>
+                                    </label>
+                                </div>
+                                <button type="submit" className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition duration-200 mt-5">
+                                    Kirim
+                                </button>
                             </form>
-                            
                         </section>
-                        <section className="bg-[#D9CCC3] py-10 flex items-center justify-center">
+
+                        <section className="bg-[#D9CCC3] py-10 flex items-center justify-center px-10 ">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1098.4750174621342!2d119.40797460867292!3d-5.143784971733459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf1d00658db7b5%3A0x31b6867dc556f58e!2sMakassar!5e0!3m2!1sid!2sid!4v1717431381610!5m2!1sid!2sid"
                                 width="1200"
@@ -383,9 +396,9 @@ const VIPDesign = () => {
                     </section>
                     
                     {/* hadiah */}
-                    <section className="bg-gradient-to-b from-white to-gray-200 pb-20 flex items-center justify-center">
-                        <div className="w-2/5"></div>
-                        <div className="w-3/5 text-center py-10 bg-gray-300 rounded-bl-[50%]">
+                    <section className="bg-gradient-to-b from-white to-gray-200 lg:pb-20 flex items-center justify-center">
+                        <div className="lg:w-2/5"></div>
+                        <div className="lg:w-3/5 text-center py-10 bg-gray-300 rounded-bl-[50%]">
                             <h1 className="text-3xl font-bold mb-10">Kirim Hadiah</h1>
                             <div className="flex w-full justify-center">
                                 <div className="w-1/2 text-start ml-10">
@@ -418,8 +431,8 @@ const VIPDesign = () => {
                         <p className="text-xl text-gray-700">Cerita tentang kami dan perjalanan cinta kami.</p>
                         </div>
                     </section>
-                    {/* nanti diubah kalau perlu */}
-                    {/* <section className="min-h-screen bg-gray-100 flex items-center justify-center">
+                    
+                    <section className="min-h-screen bg-gray-100 flex items-center justify-center">
                         <form className="bg-white p-6 rounded shadow-md w-full max-w-md" onSubmit={handleSubmit}>
                         <h2 className="text-3xl mb-4 font-semibold text-gray-800"></h2>
                         <div className="mb-4">
@@ -463,11 +476,11 @@ const VIPDesign = () => {
                     {/* footer */}
                     <footer className="bg-gray-700 text-white">
                         {/* <p>&copy; 2024 Wedding Invitation. All rights reserved.</p> */}
-                        <div className="flex w-full justify-center">
-                            <div className="w-1/2">
+                        <div className="lg:flex w-full justify-center">
+                            <div className="lg:w-1/2">
                                 <img src={ftr} alt="" className="w-auto h-auto" />
                             </div>
-                            <div className="w-1/2 p-10">
+                            <div className="lg:w-1/2 p-10">
                                 <p className="mb-10">Merupakan suatu kehormatan dan kebahagiaan bagi kami <br /> apabila, Bapak / Ibu / Saudara / i. berkenan hadir untuk <br /> memberikan doa restunya kami ucapkan terimakasih.</p>
                                 <div>
                                     <p className="text-2xl font-semibold mb-3">Turut Mengundang :</p>
@@ -480,7 +493,7 @@ const VIPDesign = () => {
                         </div>
                     </footer>
                     {/* fitur music player di undangan, filenya adalah : MusicPlayer.jsx */}
-                    {/* <MusicPlayer /> */}
+                    <MusicPlayer />
                 </section>
             )}
         </>
