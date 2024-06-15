@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { FaSignInAlt } from 'react-icons/fa';
+import styled from 'styled-components';
 
 
 import img1 from '../../assets/1e.jpg';
@@ -62,6 +63,7 @@ const imagesBasic = [
 ];
 
 
+
 const DesignPage = () => {
   const navigate = useNavigate();
 
@@ -69,15 +71,56 @@ const DesignPage = () => {
     navigate(path);
   };
 
+  const Circle1 = styled.div`
+    background: ${({ theme }) => theme.designGradient};
+    position: absolute;
+
+  `;
+
+const Circle2 = styled.div`
+  background: ${({ theme }) => theme.designGradient2};
+  position: absolute;
+
+`;
+
+const HomeDesignSection = styled.div`
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
+  position: relative;
+
+h2 {
+  color: ${({ theme }) => theme.color};
+}
+
+h1{
+  color: ${({ theme }) => theme.color};
+}
+
+p{
+  color: ${({ theme }) => theme.color};
+}
+
+h3{
+  color: ${({ theme }) => theme.color};
+}
+`;
+
+const SectionDesign = styled.div`
+  background: ${({ theme }) => theme.sectionDesign};
+    .custom-text {
+      color: ${({ theme }) => theme.textColor};
+    }
+`;
+
   return (
     <div className="relative w-full max-w-full m-0 bg-white">
       {/* Hero Section */}
-      <section className="relative w-full h-[610px] bg-[#FFFCFC] flex justify-center items-center overflow-hidden">
+      <HomeDesignSection className="relative w-full h-[610px] flex justify-center items-center overflow-hidden">
         {/* Ellipse 1 */}
-        <div className="absolute w-[984px] h-[923px] left-[-280px] top-[-358px] bg-gradient-to-r from-[#FFF2F2] to-[#FFFFFF] rounded-full"></div>
+        <Circle1 className=" w-[984px] h-[923px] left-[-280px] top-[-358px] rounded-full"></Circle1>
 
         {/* Ellipse 2 */}
-        <div className="absolute w-[570px] h-[533px] left-[-118px] top-[-179px] bg-gradient-to-r from-[#FFCECE] to-[#FFFFFF] rounded-full"></div>
+        <Circle2 className=" w-[570px] h-[533px] left-[-118px] top-[-179px] rounded-full"></Circle2>
 
         {/* Text Content 1 */}
         <div className="absolute top-24 sm:top-28 w-full flex flex-col items-center text-center px-4">
@@ -115,18 +158,18 @@ const DesignPage = () => {
             </button>
           </div>
         </div>
-      </section>
+      </HomeDesignSection>
 
       {/* Section Design Eksklusif */}
       <section>
-        <div className="relative w-full py-12 bg-gradient-to-br from-[#FFF2F2] to-[#FFFFFF] flex justify-center items-center overflow-hidden">
+        <SectionDesign className="relative w-full py-12 flex justify-center items-center overflow-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12 px-4">
             {imagesEksklusif.map((image, index) => (
               <div key={index} className="border border-yellow-600 rounded-md flex flex-col justify-between items-center p-4 relative group">
                 <div className="w-full flex justify-center">
                   <img src={image.src} alt={image.alt} className="w-full sm:w-4/5 transition-opacity duration-300 group-hover:opacity-50" />
                 </div>
-                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4">
+                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"
@@ -136,19 +179,19 @@ const DesignPage = () => {
               </div>
             ))}
           </div>
-        </div>
+        </SectionDesign>
       </section>
 
       {/* Section Design Premium */}
       <section>
-        <div className="relative w-full py-12 bg-gradient-to-br from-[#FFF2F2] to-[#FFFFFF] flex justify-center items-center overflow-hidden">
+        <SectionDesign className="relative w-full py-12 flex justify-center items-center overflow-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12 px-4">
             {imagesPremium.map((image, index) => (
               <div key={index} className="border border-purple-600 rounded-md flex flex-col justify-between items-center p-4 relative group">
                 <div className="w-full flex justify-center">
                   <img src={image.src} alt={image.alt} className="w-full sm:w-4/5 transition-opacity duration-300 group-hover:opacity-50" />
                 </div>
-                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4">
+                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"
@@ -158,19 +201,19 @@ const DesignPage = () => {
               </div>
             ))}
           </div>
-        </div>
+        </SectionDesign>
       </section>
 
       {/* Section Design Basic */}
       <section>
-        <div className="relative w-full py-12 bg-gradient-to-br from-[#FFF2F2] to-[#FFFFFF] flex justify-center items-center overflow-hidden">
+        <SectionDesign className="relative w-full py-12  flex justify-center items-center overflow-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12 px-4">
             {imagesBasic.map((image, index) => (
               <div key={index} className="border border-grey-600 rounded-md flex flex-col justify-between items-center p-4 relative group">
                 <div className="w-full flex justify-center">
                   <img src={image.src} alt={image.alt} className="w-full sm:w-4/5 transition-opacity duration-300 group-hover:opacity-50" />
                 </div>
-                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4">
+                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"
@@ -180,7 +223,7 @@ const DesignPage = () => {
               </div>
             ))}
           </div>
-        </div>
+        </SectionDesign>
       </section>
     </div>
   );
