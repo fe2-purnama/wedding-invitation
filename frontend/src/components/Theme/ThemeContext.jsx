@@ -21,10 +21,10 @@ const lightTheme = {
 };
 
 const darkTheme = {
-    background: '#000000',
-    navBackground: '#333333',
+    background: '#333',
+    navBackground: '#120f17',
     color: '#ffffff',
-    cardBackground: '#333333',
+    cardBackground: '#333',
     cardColor: '#FFFFFF',
     gradient: 'linear-gradient(to right, #000, #333)',
     backgroundGradient: 'linear-gradient(to bottom, #000, #333)',
@@ -33,7 +33,8 @@ const darkTheme = {
     sectionDesign: 'linear-gradient(to left, #333, #000)',
     textColor: '#fff',
     sectionReview: '#000',
-    textColorReview: '#fff'
+    textColorReview: '#fff',
+    TeamSection: '#000'
 };
 
 export const ThemeProvider = ({ children }) => {

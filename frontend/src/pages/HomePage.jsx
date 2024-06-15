@@ -22,7 +22,7 @@ color: ${({ theme }) => theme.color};
 position: relative;
 transition: background-color 0.5s ease;
 
-  h2 {
+h2 {
     color: ${({ theme }) => theme.color};
     transition: color 0.5s ease;
   }
@@ -57,6 +57,7 @@ const BannerImage = styled.img`
 
 const Section = styled.section`
   background: ${({ theme }) => theme.backgroundGradient};
+  color: ${({ theme }) => theme.color};
   padding: 2rem 0;
   transition: background-color 0.5s ease;
 
