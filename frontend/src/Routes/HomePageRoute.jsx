@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import HomePage from "../pages/HomePage";
 import DesignPage from "../pages/Design/DesignPage";
 import ReviewPage from "../pages/Review/ReviewPage";
-import AboutPage from "../pages/AboutPage1";
+import AboutPage from "../pages/AboutPage";
 import PremiumTemplate from "../pages/Design/PremiumDesign/PremiumTemplate";
 import Envelope from "../components/PremiumTemplateComponent/Envelope";
 import VIPDesign from "../pages/Design/VIpDesign/VIPDesign";
