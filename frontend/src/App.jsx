@@ -1,30 +1,3 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePageRoute from './Routes/HomePageRoute';
-import Login from './pages/Authentication/Login'
-import Register from './pages/Authentication/Register';
-import Admin from './pages/Dashboard/AdminDash'
-import InvitationManager from './Routes/InvitationManager';
-
-
-const App = () => {
-
-  
-  return (
-    <Router>
-      <Routes>
-        <Route path="/*" element={<HomePageRoute />} />
-        <Route path="/login" element={<Login />}/>
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/dashboard/*" element={<InvitationManager />} />
-      </Routes>
-    </Router>
-  );
-};
-
-export default App;
 
 
 
@@ -82,3 +55,32 @@ export default App;
 
 // export default App;
 
+
+
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePageRoute from './Routes/HomePageRoute';
+import Login from './pages/Authentication/Login'
+import Register from './pages/Authentication/Register';
+import Admin from './pages/Dashboard/AdminDash'
+import InvitationManager from './Routes/InvitationManager';
+
+
+const App = () => {
+
+  
+  return (
+    <Router>
+      <Routes>
+        <Route path="/*" element={<HomePageRoute />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/register" element={<Register />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/dashboard/*" element={<InvitationManager />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;

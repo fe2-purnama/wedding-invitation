@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
-// Import gambar
 import HomeImage from '../../../assets/undanganBasic1/img/Home.png';
 import DF2Image from '../../../assets/undanganBasic1/img/DF2.jpeg';
 import AHImage from '../../../assets/undanganBasic1/img/AH.png';
@@ -17,7 +16,7 @@ import GalleryImage1 from '../../../assets/undanganBasic1/img/14.jpeg';
 import GalleryImage2 from '../../../assets/undanganBasic1/img/Foto 3.jpeg';
 import GalleryImage3 from '../../../assets/undanganBasic1/img/Bareng.png';
 import GalleryImage4 from '../../../assets/undanganBasic1/img/Pre_wed.png'
-// import './App.css'
+import MusicPlayer from '../../../components/MusicPlayer';
 
 
 const Header = () => {
@@ -336,6 +335,7 @@ function BasicDesign3() {
           </div>
         </div>
       </section>
+      <MusicPlayer />
 
     </div>
   )

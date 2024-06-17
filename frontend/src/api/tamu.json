@@ -1,0 +1,24 @@
+{
+  "guests": [
+    {
+      "name": "ilham",
+      "id": "2244"
+    },
+    {
+      "id": "8b39",
+      "name": "dika"
+    }
+  ],
+  "attend": [
+    {
+      "id": "7e13",
+      "name": "ilham",
+      "attending": "hadir"
+    },
+    {
+      "id": "f90d",
+      "name": "dika",
+      "attending": "absen"
+    }
+  ]
+}
