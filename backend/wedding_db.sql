@@ -25,6 +25,7 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `tbl_admins`
+-- Table structure for table `tbl_admins`
 --
 
 CREATE TABLE `tbl_admins` (
@@ -38,11 +39,17 @@ CREATE TABLE `tbl_admins` (
 
 --
 -- Table structure for table `tbl_detail_invitations`
+-- Table structure for table `tbl_detail_invitations`
 --
 
 CREATE TABLE `tbl_detail_invitations` (
+CREATE TABLE `tbl_detail_invitations` (
   `id_undangan` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL,
+  `bride_name` varchar(100) NOT NULL,
+  `groom_name` varchar(100) NOT NULL,
+  `wedding_date` date NOT NULL,
+  `location` varchar(255) NOT NULL
   `bride_name` varchar(100) NOT NULL,
   `groom_name` varchar(100) NOT NULL,
   `wedding_date` date NOT NULL,
@@ -53,8 +60,10 @@ CREATE TABLE `tbl_detail_invitations` (
 
 --
 -- Table structure for table `tbl_guests`
+-- Table structure for table `tbl_guests`
 --
 
+CREATE TABLE `tbl_guests` (
 CREATE TABLE `tbl_guests` (
   `id_undangan` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL,
@@ -65,8 +74,10 @@ CREATE TABLE `tbl_guests` (
 
 --
 -- Table structure for table `tbl_invitations`
+-- Table structure for table `tbl_invitations`
 --
 
+CREATE TABLE `tbl_invitations` (
 CREATE TABLE `tbl_invitations` (
   `id_undangan` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL
@@ -105,25 +116,32 @@ CREATE TABLE `tbl_users` (
 
 --
 -- Indexes for table `tbl_admins`
+-- Indexes for table `tbl_admins`
 --
 ALTER TABLE `tbl_admins`
   ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `tbl_detail_invitations`
+-- Indexes for table `tbl_detail_invitations`
 --
 ALTER TABLE `tbl_detail_invitations`
+ALTER TABLE `tbl_detail_invitations`
   ADD PRIMARY KEY (`id_undangan`),
+  ADD UNIQUE KEY `user_id` (`nama`);
   ADD UNIQUE KEY `user_id` (`nama`);
 
 --
 -- Indexes for table `tbl_guests`
+-- Indexes for table `tbl_guests`
 --
+ALTER TABLE `tbl_guests`
 ALTER TABLE `tbl_guests`
   ADD PRIMARY KEY (`id_undangan`),
   ADD UNIQUE KEY `nama_tamu` (`nama`);
 
 --
+-- Indexes for table `tbl_invitations`
 -- Indexes for table `tbl_invitations`
 --
 ALTER TABLE `tbl_invitations`
@@ -184,7 +202,18 @@ ALTER TABLE `tbl_detail_invitations`
 
 --
 -- Constraints for table `tbl_guests`
+-- Constraints for table `tbl_guests`
 --
+ALTER TABLE `tbl_guests`
+  ADD CONSTRAINT `tbl_guests_ibfk_1` FOREIGN KEY (`id_undangan`) REFERENCES `tbl_rsvps` (`id_undangan`),
+  ADD CONSTRAINT `tbl_guests_ibfk_2` FOREIGN KEY (`nama`) REFERENCES `tbl_rsvps` (`nama`);
+
+--
+-- Constraints for table `tbl_invitations`
+--
+ALTER TABLE `tbl_invitations`
+  ADD CONSTRAINT `tbl_invitations_ibfk_1` FOREIGN KEY (`id_undangan`) REFERENCES `tbl_guests` (`id_undangan`),
+  ADD CONSTRAINT `tbl_invitations_ibfk_2` FOREIGN KEY (`nama`) REFERENCES `tbl_guests` (`nama`);
 ALTER TABLE `tbl_guests`
   ADD CONSTRAINT `tbl_guests_ibfk_1` FOREIGN KEY (`id_undangan`) REFERENCES `tbl_rsvps` (`id_undangan`),
   ADD CONSTRAINT `tbl_guests_ibfk_2` FOREIGN KEY (`nama`) REFERENCES `tbl_rsvps` (`nama`);

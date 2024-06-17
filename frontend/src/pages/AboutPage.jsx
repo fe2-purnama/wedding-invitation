@@ -23,6 +23,7 @@ const TeamSection = styled.section`
   //darkmode
   background: ${({ theme }) => theme.TeamSection};
   color: ${({ theme }) => theme.color};
+  transition: background-color 0.5s ease;
 `;
 
 const Container = styled.div`
@@ -74,6 +75,7 @@ const Member = styled.div`
 
 background: ${({ theme }) => theme.cardBackground};
 color: ${({ theme }) => theme.cardColor};
+transition: background-color 0.5s ease;
 
   @media (max-width: 768px) {
     padding-top: 1.5rem;
@@ -151,12 +153,14 @@ const SocialLinks = styled.div`
 const Circle1 = styled.div`
     background: ${({ theme }) => theme.designGradient};
     position: absolute;
+    transition: background-color 0.5s ease;
 
   `;
 
 const Circle2 = styled.div`
   background: ${({ theme }) => theme.designGradient2};
   position: absolute;
+  transition: background-color 0.5s ease;
 
 `;
 
@@ -164,25 +168,31 @@ const HomeAboutSection = styled.div`
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.color};
   position: relative;
+  transition: background-color 0.5s ease;
 
 h2 {
   color: ${({ theme }) => theme.color};
+  transition: background-color 0.5s ease;
 }
 
 h1{
   color: ${({ theme }) => theme.color};
+  transition: background-color 0.5s ease;
 }
 
 p{
   color: ${({ theme }) => theme.color};
+  transition: background-color 0.5s ease;
 }
 
 h3{
   color: ${({ theme }) => theme.color};
+  transition: background-color 0.5s ease;
 }
 
 h5{
   color: ${({ theme }) => theme.color};
+  transition: background-color 0.5s ease;
 }
 `;
 
