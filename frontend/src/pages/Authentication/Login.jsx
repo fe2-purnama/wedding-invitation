@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -5,47 +6,50 @@ import axios from 'axios';
 import bg from '../../assets/lll.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = ({ setIsRegister }) => {
-  const [emailOrUsername, setEmailOrUsername] = useState('');
-  const [password, setPassword] = useState('');
+const Login = () => {
+ 
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('http://localhost:8080/login', {
-  //       emailOrUsername,
-  //       password,
-  //     });
-  //     alert(response.data.msg);
-  //     navigate('/InvitationManager'); // Navigasi setelah login berhasil
-  //   } catch (error) {
-  //     alert(error.response.data.msg);
-  //   }
-  // };
-
-  // Testing tanpa database, harap hapus ini ketika sudah ada database.
-  const handleSubmit = (e) => {
+  
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Simulasi login berhasil
-    alert('Login berhasil');
-    navigate('/dashboard');
+    try {
+      const userResponse = await axios.get(`http://localhost:5000/users?email=${email}&password=${password}`);
+      const adminResponse = await axios.get(`http://localhost:5000/admins?email=${email}&password=${password}`);
+  
+      if (userResponse.data.length > 0) {
+        const user = userResponse.data[0];
+        navigate('/dashboard/home'); // Redirect to user dashboard
+      } else if (adminResponse.data.length > 0) {
+        const admin = adminResponse.data[0];
+        navigate('/admin'); // Redirect to admin dashboard
+      } else {
+        setError('Something wrong with your email or password.'); // Display error if no user or admin found
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      setError('Error logging in. Please try again later.'); // Display error for API call failures
+    }
   };
+  
   
 
   return (
     <div className="h-full w-full flex items-center justify-center">
       <div className="m-20 bg-gray-100 rounded-lg shadow-lg flex md:flex-row flex-col w-[800px]">
         <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 rounded-lg md:rounded-l-none md:rounded-r-lg">
-          <form className="my-20 space-y-6 items-center justify-center" onSubmit={handleSubmit}>
+          <form className="my-20 space-y-6 items-center justify-center" onSubmit={handleLogin}>
             <div>
               <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Login
               </h2>
             </div>
-            
+            {error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
             <div className="flex items-center border rounded-lg">
-              <label htmlFor="email-or-username" className="sr-only">
+              <label htmlFor="email" className="sr-only">
                 Email or Username
               </label>
               <span className="inline-flex items-center px-3 text-sm text-gray-900 border-r border-gray-300 bg-gray-100 rounded-l-md">
@@ -54,15 +58,16 @@ const Login = ({ setIsRegister }) => {
                 </svg>
               </span>
               <input 
-                id="email-or-username" 
-                name="username" 
-                type="text" 
+                id="email" 
+                name="email" 
+                 type="email" 
                 autoComplete="email"
                 required 
                 className="flex-1 p-2.5 text-sm text-gray-900 border-none focus:ring-blue-500 focus:border-blue-500 rounded-r-lg" 
-                placeholder="Username" 
-                value={emailOrUsername} 
-                onChange={(e) => setEmailOrUsername(e.target.value)} 
+                placeholder="email" 
+                 value={email} 
+                 onChange={(e) => setEmail(e.target.value)} 
+                // onChange={handleInputChange}
               />
             </div>
             <div className="flex items-center border rounded-lg">
@@ -82,8 +87,9 @@ const Login = ({ setIsRegister }) => {
                 required
                 className="flex-1 p-2.5 text-sm text-gray-900 border-none focus:ring-blue-500 focus:border-blue-500 rounded-r-lg"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                 value={password}
+                 onChange={(e) => setPassword(e.target.value)}
+                //onChange={handleInputChange}
               />
             </div>
             
@@ -99,7 +105,7 @@ const Login = ({ setIsRegister }) => {
               <button
                 type="button"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
-                onClick={() => setIsRegister(true)}
+                
               >
                 <Link to="/register">Silahkan register jika belum punya akun</Link>
               </button>
@@ -119,135 +125,3 @@ Login.propTypes = {
 };
 
 export default Login;
-
-
-
-// // import { useState, useEffect } from 'react';
-// // import { createClient } from '@supabase/supabase-js';
-// // import { Auth } from '@supabase/auth-ui-react';
-// // import { ThemeSupa } from '@supabase/auth-ui-shared';
-// // import { useNavigate } from 'react-router-dom';
-
-// // const supabase = createClient(
-// //   'https://jrpjxlicyljxaajeklld.supabase.co',
-// //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpycGp4bGljeWxqeGFhamVrbGxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY5ODkzNjgsImV4cCI6MjAzMjU2NTM2OH0.C9HlQZb3u7N4ZwPDK666M5SXv5xSIkX1BMEcHDcyZT4'
-// // );
-
-// // export default function App() {
-// //   const [session, setSession] = useState(null);
-// //   const navigate = useNavigate();
-
-// //   useEffect(() => {
-// //     supabase.auth.getSession().then(({ data: { session } }) => {
-// //       setSession(session);
-// //     });
-
-// //     const {
-// //       data: { subscription },
-// //     } = supabase.auth.onAuthStateChange((_event, session) => {
-// //       setSession(session);
-// //     });
-
-// //     return () => subscription.unsubscribe();
-// //   }, []);
-
-// //   const handleLogout = async () => {
-// //     await supabase.auth.signOut();
-// //     navigate('/');  // Ganti '/logged-out' dengan rute yang sesuai
-// //   };
-
-// //   if (!session) {
-// //     return (
-// //       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-// //         <Auth
-// //           supabaseClient={supabase}
-// //           appearance={{ theme: ThemeSupa }}
-// //         />
-// //       </div>
-// //     );
-// //   } else {
-// //     return (
-// //       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-// //         <h1 className="text-2xl font-bold mb-4">Logged in!</h1>
-// //         <button
-// //           onClick={handleLogout}
-// //           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-200"
-// //         >
-// //           Logout
-// //         </button>
-// //       </div>
-// //     );
-// //   }
-// // }
-
-
-// import React, { useState } from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
-// import axios from 'axios';
-
-// const Login = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const navigate = useNavigate();
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await axios.post('/api/login', { email, password });
-//       if (response.data.success) {
-//         navigate('/dashboard');
-//       } else {
-//         alert('Login failed');
-//       }
-//     } catch (error) {
-//       alert('An error occurred');
-//     }
-//   };
-
-//   return (
-//     <div className="w-full max-w-xs">
-//       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleLogin}>
-//         <div className="mb-4">
-//           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-//             Email
-//           </label>
-//           <input
-//             type="email"
-//             id="email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-//             required
-//           />
-//         </div>
-//         <div className="mb-6">
-//           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-//             Password
-//           </label>
-//           <input
-//             type="password"
-//             id="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-//             required
-//           />
-//         </div>
-//         <div className="flex items-center justify-between">
-//           <button
-//             type="submit"
-//             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-//           >
-//             Login
-//           </button>
-//           <Link to="/register" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-//             Silahkan register jika belum punya akun
-//           </Link>
-//         </div>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
-

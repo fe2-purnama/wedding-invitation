@@ -8,6 +8,7 @@ import m1 from "../../../assets/kevin2.jpg"
 import w1 from "../../../assets/windu2.jpg"
 import wed from '../../../assets/wed.jpg'
 import ftr from '../../../assets/ftr.jpg'
+import axios from "axios";
  import MusicPlayer from "../../../components/MusicPlayer"; //music player pada undangan
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -38,23 +39,23 @@ const VIPDesign = () => {
     const handleOpen = () => {
         setIsOpen(true);
     };
-    const [formData, setFormData] = useState({
-        name: '',
-        attending: 'yes',
-      });
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     attending: 'yes',
+    //   });
     
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
+    //   const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //       ...formData,
+    //       [name]: value,
+    //     });
+    //   };
     
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        alert('RSVP Submitted');
-      };
+    //   const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     alert('RSVP Submitted');
+    //   };
       const calculateTimeLeft = () => {
         const weddingDate = new Date('2024-06-30T12:59:59');
         const now = new Date();
@@ -85,7 +86,49 @@ const VIPDesign = () => {
       }, []);
       
       
+      const [formData, setFormData] = useState({ name: '', attending: '' });
+  const [guests, setGuests] = useState([]);
+  const [isNameValid, setIsNameValid] = useState(false);
 
+  useEffect(() => {
+    const fetchGuests = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/guests');
+        setGuests(response.data);
+      } catch (error) {
+        console.error('Error fetching guests:', error);
+      }
+    };
+    fetchGuests();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCheckName = () => {
+    const guestExists = guests.some((guest) => guest.name.toLowerCase() === formData.name.toLowerCase());
+    setIsNameValid(guestExists);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isNameValid) {
+      try {
+        const response = await axios.post('http://localhost:3000/attend', formData);
+        console.log('Attendance recorded:', response.data);
+        alert('RSPV Terkirim')
+        // Reset form
+        setFormData({ name: '', attending: '' });
+        setIsNameValid(false);
+      } catch (error) {
+        console.error('Error recording attendance:', error);
+      }
+    } else {
+      alert('Nama tidak ditemukan dalam daftar tamu.');
+    }
+  };
 
     return (
         <>
@@ -348,7 +391,7 @@ const VIPDesign = () => {
                             <div className="hidden lg:w-2/5 lg:flex lg:flex-col items-center justify-center relative">
                                 <img src={wed} alt="bjhdf" className="rounded-br-[30%] rounded-tl-[30%] w-[300px] h-[400px] ml-auto mr-10 object-cover" />
                             </div>
-                            <form className="lg:w-3/5 p-6 rounded shadow-lg mx-5 lg:ml-0 lg:mr-20" onSubmit={handleSubmit}>
+                            {/* <form className="lg:w-3/5 p-6 rounded shadow-lg mx-5 lg:ml-0 lg:mr-20" onSubmit={handleSubmit}>
                                 <p className="text-3xl font-semibold text-gray-800 pb-5">Konfirmasi Kehadiran</p>
                                 <div className="flex items-center mb-5">
                                     <input
@@ -378,6 +421,45 @@ const VIPDesign = () => {
                                     </label>
                                 </div>
                                 <button type="submit" className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition duration-200 mt-5">
+                                    Kirim
+                                </button>
+                            </form> */}
+                            <form className="lg:w-3/5 p-6 rounded shadow-lg mx-5 lg:ml-0 lg:mr-20" onSubmit={handleSubmit}>
+                                <p className="text-3xl font-semibold text-gray-800 pb-5">Konfirmasi Kehadiran</p>
+                                <div className="flex items-center mb-5">
+                                    <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Nama Lengkap"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
+                                    />
+                                    <button
+                                    type="button"
+                                    onClick={handleCheckName}
+                                    className="ml-3 bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition duration-200"
+                                    >
+                                    Check
+                                    </button>
+                                </div>
+                                <div className="mb-5">
+                                    <label className="flex items-center mb-3">
+                                    <input type="radio" name="attending" value="hadir" onChange={handleChange} className="mr-2" />
+                                    <span className="text-gray-600">Saya akan datang</span>
+                                    </label>
+                                    <label className="flex items-center">
+                                    <input type="radio" name="attending" value="absen" onChange={handleChange} className="mr-2" />
+                                    <span className="text-gray-600">Maaf, saya tidak bisa datang</span>
+                                    </label>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className={`w-full bg-blue-500 text-white p-3 rounded transition duration-200 mt-5 ${
+                                    !isNameValid ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
+                                    }`}
+                                    disabled={!isNameValid}
+                                >
                                     Kirim
                                 </button>
                             </form>

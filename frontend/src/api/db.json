@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "john_doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "phone": "123456789",
+      "address": "123 Main St"
+    },
+    {
+      "id": "2",
+      "username": "jane_doe",
+      "email": "jane@example.com",
+      "password": "password123",
+      "phone": "987654321",
+      "address": "456 Elm St"
+    },
+    {
+      "id": "cb09",
+      "username": "13020210017",
+      "email": "rezkycyber012@gmail.com",
+      "password": "acsvlkhcdj,mc",
+      "phone": "12345467",
+      "address": "XScdafvgebhrbfv"
+    },
+    {
+      "id": "9e3c",
+      "username": "13020210182",
+      "email": "rezkycyber012@gmail.com",
+      "password": "09876543",
+      "phone": "918926793109483",
+      "address": "rqytywuioupid109738709"
+    },
+    {
+      "id": "11b8",
+      "username": "gchvkjbsld",
+      "email": "ghvdckd@gmail.com",
+      "password": "aghs;djkncnl,mds",
+      "phone": "09876543",
+      "address": "poiugfhcvbnlwkend",
+      "role": "user"
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "admin123"
+    }
+  ]
+}
