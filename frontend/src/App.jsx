@@ -65,13 +65,14 @@ import Login from './pages/Authentication/Login'
 import Register from './pages/Authentication/Register';
 import Admin from './pages/Dashboard/AdminDash'
 import InvitationManager from './Routes/InvitationManager';
-
+import { ThemeProvider } from './components/Theme/ThemeContext';
 
 const App = () => {
 
   
   return (
-    <Router>
+    <ThemeProvider>
+      <Router>
       <Routes>
         <Route path="/*" element={<HomePageRoute />} />
         <Route path="/login" element={<Login />}/>
@@ -80,6 +81,8 @@ const App = () => {
         <Route path="/dashboard/*" element={<InvitationManager />} />
       </Routes>
     </Router>
+    </ThemeProvider>
+    
   );
 };
 
