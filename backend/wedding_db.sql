@@ -39,10 +39,6 @@ CREATE TABLE `tbl_admins` (
 
 --
 -- Table structure for table `tbl_detail_invitations`
--- Table structure for table `tbl_detail_invitations`
---
-
-CREATE TABLE `tbl_detail_invitations` (
 CREATE TABLE `tbl_detail_invitations` (
   `id_undangan` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL,
@@ -60,10 +56,6 @@ CREATE TABLE `tbl_detail_invitations` (
 
 --
 -- Table structure for table `tbl_guests`
--- Table structure for table `tbl_guests`
---
-
-CREATE TABLE `tbl_guests` (
 CREATE TABLE `tbl_guests` (
   `id_undangan` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL,
@@ -74,10 +66,6 @@ CREATE TABLE `tbl_guests` (
 
 --
 -- Table structure for table `tbl_invitations`
--- Table structure for table `tbl_invitations`
---
-
-CREATE TABLE `tbl_invitations` (
 CREATE TABLE `tbl_invitations` (
   `id_undangan` int(11) NOT NULL,
   `nama` varchar(250) NOT NULL
@@ -116,16 +104,12 @@ CREATE TABLE `tbl_users` (
 
 --
 -- Indexes for table `tbl_admins`
--- Indexes for table `tbl_admins`
 --
 ALTER TABLE `tbl_admins`
   ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `tbl_detail_invitations`
--- Indexes for table `tbl_detail_invitations`
---
-ALTER TABLE `tbl_detail_invitations`
 ALTER TABLE `tbl_detail_invitations`
   ADD PRIMARY KEY (`id_undangan`),
   ADD UNIQUE KEY `user_id` (`nama`);
@@ -133,15 +117,11 @@ ALTER TABLE `tbl_detail_invitations`
 
 --
 -- Indexes for table `tbl_guests`
--- Indexes for table `tbl_guests`
---
-ALTER TABLE `tbl_guests`
 ALTER TABLE `tbl_guests`
   ADD PRIMARY KEY (`id_undangan`),
   ADD UNIQUE KEY `nama_tamu` (`nama`);
 
 --
--- Indexes for table `tbl_invitations`
 -- Indexes for table `tbl_invitations`
 --
 ALTER TABLE `tbl_invitations`
