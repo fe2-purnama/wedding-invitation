@@ -254,7 +254,28 @@ const Dashboard = () => {
             </ul>
           </div>
         )}
-
+        {content === 'Daftar Kehadiran' && (
+              <div className="bg-white p-4 rounded shadow">
+                <h3 className="text-lg font-semibold mb-2">Daftar Kehadiran Tamu</h3>
+                
+                <table className="w-full mt-2 border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="border p-2">Nama Tamu</th>
+                      <th className="border p-2">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {attend.map((attend, index) => (
+                      <tr key={index}>
+                        <td className="border p-2 text-center">{attend.name}</td>
+                        <td className="border p-2 text-center">{attend.attending}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
         {/* Add similar sections for other content if needed */}
       </main>
     </div>
