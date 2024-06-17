@@ -19,6 +19,10 @@ const TeamSection = styled.section`
   padding: 3rem 0;
   background: linear-gradient(to bottom right, #fff2f2, #ffffff);
   display: flex;
+  
+  //darkmode
+  background: ${({ theme }) => theme.TeamSection};
+  color: ${({ theme }) => theme.color};
 `;
 
 const Container = styled.div`
@@ -46,6 +50,7 @@ const MemberCard = styled.div`
   width: 100%;
   margin-bottom: 3rem;
   margin-top: 1rem;
+
   @media (min-width: 640px) {
     width: 50%;
   }
@@ -66,6 +71,9 @@ const Member = styled.div`
   height: 100%;
   position: relative;
   padding-top: 4rem;
+
+background: ${({ theme }) => theme.cardBackground};
+color: ${({ theme }) => theme.cardColor};
 
   @media (max-width: 768px) {
     padding-top: 1.5rem;
@@ -139,15 +147,62 @@ const SocialLinks = styled.div`
   }
 `;
 
+//darkmode
+const Circle1 = styled.div`
+    background: ${({ theme }) => theme.designGradient};
+    position: absolute;
+
+  `;
+
+const Circle2 = styled.div`
+  background: ${({ theme }) => theme.designGradient2};
+  position: absolute;
+
+`;
+
+const HomeAboutSection = styled.div`
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.color};
+  position: relative;
+
+h2 {
+  color: ${({ theme }) => theme.color};
+}
+
+h1{
+  color: ${({ theme }) => theme.color};
+}
+
+p{
+  color: ${({ theme }) => theme.color};
+}
+
+h3{
+  color: ${({ theme }) => theme.color};
+}
+
+h5{
+  color: ${({ theme }) => theme.color};
+}
+`;
+
+const Card = styled.div`
+  background: ${({ theme }) => theme.cardBackground};
+  transition: background-color 0.5s ease;
+
+    h4, span, h1, h2, p{
+      color: ${({ theme }) => theme.cardColor};
+    }
+`;
 function AboutPage() {
   return (
-    <div className="relative w-full max-w-full mx-0 bg-white">
-      <section className="relative w-full min-h-[610px] bg-[#FFFCFC] flex justify-center items-center" style={{ overflow: 'hidden' }}>
+    <HomeAboutSection className="relative w-full max-w-full mx-0">
+      <HomeAboutSection className="relative w-full min-h-[610px] flex justify-center items-center" style={{ overflow: 'hidden' }}>
         {/* Ellipse 1 */}
-        <div className="absolute w-[984px] h-[923px] left-[-280px] top-[-358px] bg-gradient-to-r from-[#FFF2F2] to-[#FFFFFF] rounded-full"></div>
-        
+        <Circle1 className=" w-[984px] h-[923px] left-[-280px] top-[-358px] rounded-full"></Circle1>
+
         {/* Ellipse 2 */}
-        <div className="absolute w-[570px] h-[533px] left-[-118px] top-[-179px] bg-gradient-to-r from-[#FFCECE] to-[#FFFFFF] rounded-full"></div>
+        <Circle2 className=" w-[570px] h-[533px] left-[-118px] top-[-179px] rounded-full"></Circle2>
 
         {/* Text Content 1 */}
         <div className="absolute top-28 w-full flex flex-col items-center text-center px-4">
@@ -164,16 +219,16 @@ function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </HomeAboutSection>
 
-      <section id="about" className="relative w-full py-12 bg-gradient-to-br from-[#FFF2F2] to-[#FFFFFF] flex" style={{ marginTop: '50px' }}>
+      <HomeAboutSection id="about" className="relative w-full py-12 flex" style={{ marginTop: '50px' }}>
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold">Talk About ...</h3>
           </div>
           <div className="flex flex-wrap justify-center">
             <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="member text-center bg-white shadow-lg rounded-lg p-6 h-full flex flex-col justify-between">
+              <Card className="member text-center bg-white shadow-lg rounded-lg p-6 h-full flex flex-col justify-between">
                 <div className="pic mb-4 overflow-hidden h-64 flex justify-center items-center">
                   <img src={icon1} alt="Check Icon" className="w-auto h-full object-contain" />
                 </div>
@@ -181,10 +236,10 @@ function AboutPage() {
                 <span className="italic text-sm text-gray-600">
                   Setiap pasangan memiliki cerita unik mereka sendiri, dan kami percaya undangan pernikahan Anda harus mencerminkan keunikan itu. Kami menawarkan layanan desain kustom yang memungkinkan Anda memilih setiap detail, mulai dari gaya dan warna hingga font dan ilustrasi, untuk memastikan undangan Anda benar-benar mencerminkan kepribadian dan gaya Anda.
                 </span>
-              </div>
+              </Card>
             </div>
             <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="member text-center bg-white shadow-lg rounded-lg p-6 h-full flex flex-col justify-between">
+              <Card className="member text-center bg-white shadow-lg rounded-lg p-6 h-full flex flex-col justify-between">
                 <div className="pic mb-4 overflow-hidden h-64 flex justify-center items-center">
                   <img src={icon2} alt="Check Icon" className="w-auto h-full object-contain" />
                 </div>
@@ -192,10 +247,10 @@ function AboutPage() {
                 <span className="italic text-sm text-gray-600">
                   Kami berusaha untuk terus berinovasi dengan menawarkan solusi undangan digital yang ramah lingkungan. Undangan digital kami tidak hanya mengurangi jejak karbon tetapi juga menyediakan opsi yang modern dan interaktif bagi pasangan yang lebih memilih pendekatan digital.
                 </span>
-              </div>
+              </Card>
             </div>
             <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-              <div className="member text-center bg-white shadow-lg rounded-lg p-6 h-full flex flex-col justify-between">
+              <Card className="member text-center bg-white shadow-lg rounded-lg p-6 h-full flex flex-col justify-between">
                 <div className="pic mb-4 overflow-hidden h-64 flex justify-center items-center">
                   <img src={icon3} alt="Check Icon" className="w-auto h-full object-contain" />
                 </div>
@@ -203,11 +258,11 @@ function AboutPage() {
                 <span className="italic text-sm text-gray-600">
                   Tim kami selalu siap membantu Anda dalam setiap langkah proses pembuatan undangan. Dari konsultasi desain awal hingga pengiriman akhir, kami di sini untuk memastikan pengalaman Anda dengan kami adalah yang terbaik.
                 </span>
-              </div>
+              </Card>
             </div>
           </div>
         </div>
-      </section>
+      </HomeAboutSection>
 
       <TeamSection id="team">
         <Container>
@@ -313,7 +368,7 @@ function AboutPage() {
           </FlexWrap>
         </Container>
       </TeamSection>
-    </div>
+    </HomeAboutSection>
   );
 }
 
