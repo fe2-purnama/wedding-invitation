@@ -15,6 +15,10 @@
     {
       "id": "d742",
       "name": "rey"
+    },
+    {
+      "id": "7ec6",
+      "name": "rissa"
     }
   ],
   "attend": [
@@ -31,6 +35,11 @@
     {
       "id": "0a61",
       "name": "tirta",
+      "attending": "hadir"
+    },
+    {
+      "id": "3049",
+      "name": "mahmud",
       "attending": "hadir"
     }
   ]
