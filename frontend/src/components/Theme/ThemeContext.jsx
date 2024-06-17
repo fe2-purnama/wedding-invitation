@@ -9,13 +9,14 @@ const ThemeContext = createContext();
 const lightTheme = {
     color: '#000000',
     cardBackground: '#FFFFFF',
+    navBackground: '#fff',
     cardColor: '#000000',
     gradient: 'linear-gradient(to right, #FFCECE, #FFFFFF)',
     backgroundGradient: 'linear-gradient(to bottom, white, #E9B2B2)',
     designGradient1: 'linear-gradient(to right, #FFF2F2, #FFF)',
     designGradient2: 'linear-gradient(to right, #FFCECE, #FFF)',
     sectionDesign: 'linear-gradient(to left, #FFF2F2, #FFF)',
-    textColor: '#fff',
+    textColor: '#grey',
     sectionReview: '#fff',
     textColorReview: 'grey'
 };

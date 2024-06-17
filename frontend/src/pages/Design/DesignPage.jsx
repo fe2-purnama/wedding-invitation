@@ -74,12 +74,14 @@ const DesignPage = () => {
   const Circle1 = styled.div`
     background: ${({ theme }) => theme.designGradient};
     position: absolute;
+    transition: background-color 0.5s ease;
 
   `;
 
 const Circle2 = styled.div`
   background: ${({ theme }) => theme.designGradient2};
   position: absolute;
+  transition: background-color 0.5s ease;
 
 `;
 
@@ -87,6 +89,7 @@ const HomeDesignSection = styled.div`
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.color};
   position: relative;
+  transition: background-color 0.5s ease;
 
 h2 {
   color: ${({ theme }) => theme.color};
@@ -107,8 +110,10 @@ h3{
 
 const SectionDesign = styled.div`
   background: ${({ theme }) => theme.sectionDesign};
+  transition: background-color 0.5s ease;
     .custom-text {
       color: ${({ theme }) => theme.textColor};
+      transition: background-color 0.5s ease;
     }
 `;
 
@@ -169,7 +174,7 @@ const SectionDesign = styled.div`
                 <div className="w-full flex justify-center">
                   <img src={image.src} alt={image.alt} className="w-full sm:w-4/5 transition-opacity duration-300 group-hover:opacity-50" />
                 </div>
-                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
+                <div className=" text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"
@@ -191,7 +196,7 @@ const SectionDesign = styled.div`
                 <div className="w-full flex justify-center">
                   <img src={image.src} alt={image.alt} className="w-full sm:w-4/5 transition-opacity duration-300 group-hover:opacity-50" />
                 </div>
-                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
+                <div className=" text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"
@@ -213,7 +218,7 @@ const SectionDesign = styled.div`
                 <div className="w-full flex justify-center">
                   <img src={image.src} alt={image.alt} className="w-full sm:w-4/5 transition-opacity duration-300 group-hover:opacity-50" />
                 </div>
-                <div className="text-gray-800 text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
+                <div className=" text-lg font-medium text-center flex flex-col gap-4 mt-4 custom-text">
                   <div>{image.alt}</div>
                 </div>
                 <div className="absolute inset-0 flex justify-center items-center bg-pink-100 bg-opacity-70 text-black text-xl font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-80 cursor-pointer"

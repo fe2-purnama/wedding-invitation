@@ -30,6 +30,7 @@ const getBackgroundColor = (packageType) => {
 const SectionReview = styled.section`
   background: ${({ theme }) => theme.sectionReview};
   color: ${({ theme }) => theme.textColorReview};
+  transition: background-color 0.5s ease;
   z-index: -1;
 `;
 
