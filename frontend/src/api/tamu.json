@@ -1,12 +1,24 @@
 {
   "guests": [
     {
-      "name": "ilham",
-      "id": "2244"
-    },
-    {
       "id": "8b39",
       "name": "dika"
+    },
+    {
+      "id": "cc16",
+      "name": "tirta"
+    },
+    {
+      "id": "03c5",
+      "name": "mahmud"
+    },
+    {
+      "id": "d742",
+      "name": "rey"
+    },
+    {
+      "id": "4a60",
+      "name": "rissa"
     }
   ],
   "attend": [
@@ -19,6 +31,11 @@
       "id": "f90d",
       "name": "dika",
       "attending": "absen"
+    },
+    {
+      "id": "0a61",
+      "name": "tirta",
+      "attending": "hadir"
     }
   ]
 }
