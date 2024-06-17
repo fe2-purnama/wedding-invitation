@@ -16,7 +16,6 @@ import Login from "../pages/Authentication/Login";
 import NavHome from "../components/NavHome";
 
 const HomePageRoute = () => {
-
   const location = useLocation();
 
   const showNavHome = ["/home", "/design", "/review", "/about"].includes(location.pathname);
@@ -24,21 +23,20 @@ const HomePageRoute = () => {
   return (
     <>
       {showNavHome && <NavHome />}
-      {/* <NavHome /> */}
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/design" element={<DesignPage />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/envelope" element={<Envelope isOpened={false} onOpen={() => {}} GuestName="Tamu" />} />  {/* New Route */}
-        <Route path="/premium-invitation" element={<PremiumTemplate />} />  {/* New Route */}
-        <Route path="/vip-invitation" element={<VIPDesign />} />  {/* New Route */}
-        <Route path="/basic1-invitation" element={<BasicDesign1 />} />  {/* New Route */}
-        <Route path="/basic2-invitation" element={<BasicDesign2 />} />  {/* New Route */}
-        <Route path="/basic3-invitation" element={<BasicDesign3 />} />  {/* New Route */}
-        <Route path="/register" element={<Register />} />  {/* New Route */}
-        <Route path="/login" element={<Login />} />  {/* New Route */}
+        <Route path="/envelope" element={<Envelope isOpened={false} onOpen={() => {}} GuestName="Tamu" />} />
+        <Route path="/premium-invitation" element={<PremiumTemplate />} />
+        <Route path="/vip-invitation" element={<VIPDesign />} />
+        <Route path="/basic1-invitation" element={<BasicDesign1 />} />
+        <Route path="/basic2-invitation" element={<BasicDesign2 />} />
+        <Route path="/basic3-invitation" element={<BasicDesign3 />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
