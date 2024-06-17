@@ -50,8 +50,8 @@ import HomePageRoute from './Routes/HomePageRoute';
 import Login from './pages/Authentication/Login'
 import Register from './pages/Authentication/Register';
 import Admin from './pages/Dashboard/AdminDash'
-import InvitationManager from './Routes/InvitationManager1';
-import PrivateRoute from './Routes/PrivateRoute';
+import InvitationManager from './Routes/InvitationManager';
+
 
 const App = () => {
 

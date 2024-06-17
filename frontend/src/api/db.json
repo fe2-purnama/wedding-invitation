@@ -40,6 +40,15 @@
       "phone": "09876543",
       "address": "poiugfhcvbnlwkend",
       "role": "user"
+    },
+    {
+      "id": "088c",
+      "username": "13020210182",
+      "email": "resky.pasuloi@gmail.com",
+      "password": "123456789",
+      "phone": "0198734689738010",
+      "address": "ugihdojkjwldkc",
+      "role": "user"
     }
   ],
   "admins": [
