@@ -17,30 +17,6 @@ const Dashboard = () => {
   const handleContentChange = (newContent) => setContent(newContent);
   const navigate = useNavigate();
 
-  // const handleAddUser = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const newUser = Object.fromEntries(formData.entries());
-  //   if (editUserIndex !== null) {
-  //     const updatedUsers = users.map((user, index) => index === editUserIndex ? newUser : user);
-  //     setUsers(updatedUsers);
-  //     setEditUserIndex(null);
-  //   } else {
-  //     setUsers([...users, newUser]);
-  //   }
-  //   e.target.reset();
-  // };
-
-  // const handleEditUser = (index) => {
-  //   setEditUserIndex(index);
-  //   const user = users[index];
-  //   document.querySelector('form').elements.namedItem('username').value = user.username;
-  //   document.querySelector('form').elements.namedItem('email').value = user.email;
-  //   document.querySelector('form').elements.namedItem('password').value = user.password;
-  //   document.querySelector('form').elements.namedItem('phone').value = user.phone;
-  //   document.querySelector('form').elements.namedItem('address').value = user.address;
-  // };
-
   
   useEffect(() => {
     fetchUsers(); // Fetch users on component mount

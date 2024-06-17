@@ -1,135 +1,6 @@
-// /* eslint-disable no-unused-vars */
-// import React, { useState } from 'react';
-// import { FaBars, FaArrowLeft, FaShareAlt, FaTachometerAlt, FaEye, FaFileAlt, FaUserFriends, FaCogs, FaQuestionCircle, FaChevronDown } from 'react-icons/fa';
-// import { useNavigate } from 'react-router-dom';
-
-// const Dashboard = () => {
-//   const [sidebarOpen, setSidebarOpen] = useState(true);
-//   const [dropdownOpen, setDropdownOpen] = useState('');
-//   const [content, setContent] = useState('Dashboard Content');
-
-//   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-//   const toggleDropdown = (menu) => {
-//     setDropdownOpen(dropdownOpen === menu ? '' : menu);
-//   };
-
-//   const handleContentChange = (newContent) => {
-//     setContent(newContent);
-//   };
-
-//   const navigate = useNavigate();
-
-//   const goBack = () => {
-//     navigate('/dashboard/dashboard_account');
-//   };
-
-//   return (
-//     <div className="flex h-screen bg-gray-200">
-//       {/* Sidebar */}
-//       <aside className={`bg-white text-gray-500 flex flex-col transition-width duration-300 ${sidebarOpen ? 'w-64' : 'w-20'}`}>
-//         <div className="p-4 text-2xl font-bold cursor-pointer" onClick={toggleSidebar}>
-//           {sidebarOpen ? 'Logo' : <FaBars />}
-//         </div>
-//         <nav className="flex-1">
-//           <ul>
-//             <li className="p-4 flex items-center cursor-pointer" onClick={() => handleContentChange('Dashboard Content')}>
-//               <FaTachometerAlt className="mr-2" /> {sidebarOpen && 'Dashboard'}
-//             </li>
-//             <li className="p-4 flex flex-col">
-//               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleDropdown('tampilan')}>
-//                 <div className="flex items-center">
-//                   <FaEye className="mr-2" /> {sidebarOpen && 'Tampilan'}
-//                 </div>
-//                 {sidebarOpen && <FaChevronDown />}
-//               </div>
-//               <ul className={`pl-8 overflow-hidden transition-ease-n-out duration-300 ${dropdownOpen === 'tampilan' ? 'max-h-screen' : 'max-h-0'}`}>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Tampilan Submenu 1')}>Submenu 1</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Tampilan Submenu 2')}>Submenu 2</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Tampilan Submenu 3')}>Submenu 3</li>
-//               </ul>
-//             </li>
-//             <li className="p-4 flex flex-col">
-//               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleDropdown('isi')}>
-//                 <div className="flex items-center">
-//                   <FaFileAlt className="mr-2" /> {sidebarOpen && 'Isi'}
-//                 </div>
-//                 {sidebarOpen && <FaChevronDown />}
-//               </div>
-//               <ul className={`pl-8 overflow-hidden transition-ease-n-out duration-300 ${dropdownOpen === 'isi' ? 'max-h-screen' : 'max-h-0'}`}>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Isi Submenu 1')}>Submenu 1</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Isi Submenu 2')}>Submenu 2</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Isi Submenu 3')}>Submenu 3</li>
-//               </ul>
-//             </li>
-//             <li className="p-4 flex flex-col">
-//               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleDropdown('tamu')}>
-//                 <div className="flex items-center">
-//                   <FaUserFriends className="mr-2" /> {sidebarOpen && 'Tamu'}
-//                 </div>
-//                 {sidebarOpen && <FaChevronDown />}
-//               </div>
-//               <ul className={`pl-8 overflow-hidden transition-ease-n-out duration-300 ${dropdownOpen === 'tamu' ? 'max-h-screen' : 'max-h-0'}`}>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Jumlah Tamu Undangan')}>Tamu Undangan</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Jumlah Kehadiran')}>Daftar Kehadiran</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Jumlah Ucapan')}>Ucapan</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Jumlah Hadiah')}>Hadiah</li>
-//               </ul>
-//             </li>
-//             <li className="p-4 flex flex-col">
-//               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleDropdown('pengaturan')}>
-//                 <div className="flex items-center">
-//                   <FaCogs className="mr-2" /> {sidebarOpen && 'Pengaturan'}
-//                 </div>
-//                 {sidebarOpen && <FaChevronDown />}
-//               </div>
-//               <ul className={`pl-8 overflow-hidden transition-ease-n-out duration-300 ${dropdownOpen === 'pengaturan' ? 'max-h-screen' : 'max-h-0'}`}>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Pengaturan Submenu 1')}>Submenu 1</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Pengaturan Submenu 2')}>Submenu 2</li>
-//                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Pengaturan Submenu 3')}>Submenu 3</li>
-//               </ul>
-//             </li>
-//             <li className="p-4 flex items-center">
-//               <a href="https://wa.me/yourwhatsapplink" className="flex items-center">
-//                 <FaQuestionCircle className="mr-2" /> {sidebarOpen && 'Bantuan'}
-//               </a>
-//             </li>
-//           </ul>
-//         </nav>
-//       </aside>
-
-//       {/* Main Content */}
-//       <main className="flex-1 flex flex-col">
-//         {/* Navbar */}
-//         <header className="flex items-center justify-between bg-white shadow p-4">
-//           <button className="flex items-center text-gray-700" onClick={goBack}>
-//             <FaArrowLeft className="mr-2" /> Kembali
-//           </button>
-//           <button className="flex items-center text-gray-700">
-//             <FaShareAlt className="mr-2" /> Share
-//           </button>
-//         </header>
-
-//         {/* Dashboard Content */}
-//         <div className="flex-1 p-3 flex">
-//           <div className="w-1/3 bg-white p-4 shadow-lg rounded-lg">
-//             <h2 className="text-xl font-bold mb-4">Informasi</h2>
-//             <p>{content}</p>
-//           </div>
-//           <div className="flex-1 p-4">
-//             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-//             <p>Selamat datang di halaman dashboard Anda.</p>
-//           </div>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaArrowLeft, FaShareAlt, FaTachometerAlt, FaEye, FaFileAlt, FaUserFriends, FaCogs, FaQuestionCircle, FaChevronDown, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaBars, FaArrowLeft,FaTimes, FaShareAlt, FaTachometerAlt, FaEye, FaFileAlt, FaUserFriends, FaCogs, FaQuestionCircle, FaChevronDown, FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -140,8 +11,8 @@ const Dashboard = () => {
   const [guestName, setGuestName] = useState('');
   const [guests, setGuests] = useState([]);
   const [attend, setAttend] = useState([]);
-  const [attendName, setAttendName] = useState('');
-  const [statusName, setStatusName] = useState('');
+  const [congratulations, setCongratulations] = useState([]);
+  const [gifts, setGifts] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -162,36 +33,6 @@ const Dashboard = () => {
   const handleGuestNameChange = (event) => {
     setGuestName(event.target.value);
   };
-
-  const handleAttendChange = (event) => {
-    setAttendName(event.target.value);
-    setStatusName(event.target.value);
-  };
-
-  // const addGuest = async () => {
-  //   if (guestName.trim() === '') return;
-
-  //   const newGuest = { name: guestName };
-  //   try {
-  //     const response = await axios.post('http://localhost:3000/guests', newGuest);
-  //     setGuests([...guests, response.data]);
-  //     setGuestName('');
-  //   } catch (error) {
-  //     console.error('Error adding guest:', error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const fetchGuests = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:3000/guests');
-  //       setGuests(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching guests:', error);
-  //     }
-  //   };
-  //   fetchGuests();
-  // }, []);
 
   const addOrUpdateGuest = async () => {
     if (guestName.trim() === '') return;
@@ -237,7 +78,6 @@ const Dashboard = () => {
     const fetchGuests = async () => {
       try {
         const response = await axios.get('http://localhost:3000/guests');
-        
         setGuests(response.data);
       } catch (error) {
         console.error('Error fetching guests:', error);
@@ -246,23 +86,48 @@ const Dashboard = () => {
     const fetchAttends = async () => {
       try {
         const response = await axios.get('http://localhost:3000/attend');
-        
         setAttend(response.data);
       } catch (error) {
-        console.error('Error fetching guests:', error);
+        console.error('Error fetching attendance:', error);
       }
     };
+    const fetchCongratulations = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/congratulations');
+        setCongratulations(response.data);
+      } catch (error) {
+        console.error('Error fetching congratulations:', error);
+      }
+    };
+    const fetchGifts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/gifts');
+        setGifts(response.data);
+      } catch (error) {
+        console.error('Error fetching gifts:', error);
+      }
+    };
+
     fetchGuests();
     fetchAttends();
+    fetchCongratulations();
+    fetchGifts();
   }, []);
 
   return (
     <div className="flex h-screen bg-gray-200">
       {/* Sidebar */}
       <aside className={`bg-white text-gray-500 flex flex-col transition-width duration-300 ${sidebarOpen ? 'w-64' : 'w-20'}`}>
-        <div className="p-4 text-2xl font-bold cursor-pointer" onClick={toggleSidebar}>
-          {sidebarOpen ? 'Logo' : <FaBars />}
-        </div>
+      <div className="flex items-center justify-between p-4 text-2xl font-bold cursor-pointer mt-16">
+      <div onClick={toggleSidebar}>
+        {sidebarOpen ? 'Logo' : <FaBars />}
+      </div>
+      {sidebarOpen && (
+        <button onClick={toggleSidebar} className="text-gray-500">
+          <FaTimes />
+        </button>
+      )}
+    </div>
         <nav className="flex-1">
           <ul>
             <li className="p-4 flex items-center cursor-pointer" onClick={() => handleContentChange('Dashboard Content')}>
@@ -321,103 +186,79 @@ const Dashboard = () => {
                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Pengaturan Submenu 3')}>Submenu 3</li>
               </ul>
             </li>
-            <li className="p-4 flex items-center">
-              <a href="https://wa.me/yourwhatsapplink" className="flex items-center">
-                <FaQuestionCircle className="mr-2" /> {sidebarOpen && 'Bantuan'}
-              </a>
+            <li className="p-4 flex items-center cursor-pointer" onClick={() => handleContentChange('Bantuan')}>
+              <FaQuestionCircle className="mr-2" /> {sidebarOpen && 'Bantuan'}
             </li>
           </ul>
         </nav>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col">
-        {/* Navbar */}
-        <header className="flex items-center justify-between bg-white shadow p-4">
-          <button className="flex items-center text-gray-700" onClick={goBack}>
-            <FaArrowLeft className="mr-2" /> Kembali
-          </button>
-          <button className="flex items-center text-gray-700">
-            <FaShareAlt className="mr-2" /> Share
-          </button>
-        </header>
+      {/* Main content */}
+      <main className="flex-1 p-8 overflow-auto">
+        <button className="mt-14 mb-5 flex items-center" onClick={goBack}>
+          <FaArrowLeft className="mr-2" /> Back
+        </button>
 
-        {/* Dashboard Content */}
-        <div className="flex-1 p-3 flex">
-          <div className="w-1/3 bg-white p-4 shadow-lg rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Informasi</h2>
-            <p>{content}</p>
-            {content === 'Tamu Undangan' && (
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Tambah Tamu</h3>
-                <input
-                  type="text"
-                  value={guestName}
-                  onChange={handleGuestNameChange}
-                  className="p-2 border rounded w-full mb-2"
-                  placeholder="Nama Tamu"
-                />
-                <button
-                  onClick={addOrUpdateGuest}
-                  className="bg-blue-500 text-white p-2 rounded"
-                >
-                  Add
-                </button>
-                <h3 className="text-lg font-semibold mt-4">Daftar Tamu</h3>
-                <table className="w-full mt-2 border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="border p-2">Nama Tamu</th>
-                      <th className="border p-2">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {guests.map((guest, index) => (
-                      <tr key={index}>
-                        <td className="border p-2 text-center">{guest.name}</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          <button className="mr-2" onClick={() => editGuest(index)}><FaEdit /></button>
-                          <button onClick={() => deleteGuest(index)}><FaTrash /></button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )} 
-            {content === 'Daftar Kehadiran' && (
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Daftar Kehadiran Tamu</h3>
-                
-                <table className="w-full mt-2 border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="border p-2">Nama Tamu</th>
-                      <th className="border p-2">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {attend.map((attend, index) => (
-                      <tr key={index}>
-                        <td className="border p-2 text-center">{attend.name}</td>
-                        <td className="border p-2 text-center">{attend.attending}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+        <h1 className="text-2xl font-bold mb-4">{content}</h1>
+
+        {/* Add the new statistics components */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div className="p-4 bg-white rounded shadow">
+            <h2 className="text-lg font-bold">Total Invited Guests</h2>
+            <p className="text-2xl">{guests.length}</p>
           </div>
-          <div className="flex-1 p-4">
-            <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
-            <p>Selamat datang di halaman dashboard Anda.</p>
+          <div className="p-4 bg-white rounded shadow">
+            <h2 className="text-lg font-bold">Total Attendees</h2>
+            <p className="text-2xl">{attend.length}</p>
+          </div>
+          <div className="p-4 bg-white rounded shadow">
+            <h2 className="text-lg font-bold">Total Congratulations</h2>
+            <p className="text-2xl">{congratulations.length}</p>
+          </div>
+          <div className="p-4 bg-white rounded shadow">
+            <h2 className="text-lg font-bold">Total Gifts</h2>
+            <p className="text-2xl">{gifts.length}</p>
           </div>
         </div>
+
+        {/* Rest of your content */}
+        {content === 'Tamu Undangan' && (
+          <div className="bg-white p-4 rounded shadow">
+            <h2 className="text-lg font-bold mb-4">Guest List</h2>
+            <div className="mb-4">
+              <input
+                type="text"
+                value={guestName}
+                onChange={handleGuestNameChange}
+                placeholder="Enter guest name"
+                className="border p-2 rounded mr-2"
+              />
+              <button onClick={addOrUpdateGuest} className="bg-blue-500 text-white p-2 rounded">
+                {editIndex !== null ? 'Update Guest' : 'Add Guest'}
+              </button>
+            </div>
+            <ul>
+              {guests.map((guest, index) => (
+                <li key={index} className="flex justify-between items-center mb-2">
+                  <span>{guest.name}</span>
+                  <div>
+                    <button onClick={() => editGuest(index)} className="text-yellow-500 mr-2">
+                      <FaEdit />
+                    </button>
+                    <button onClick={() => deleteGuest(index)} className="text-red-500">
+                      <FaTrash />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Add similar sections for other content if needed */}
       </main>
     </div>
   );
 };
 
 export default Dashboard;
-
-
