@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaArrowLeft,FaTimes, FaShareAlt, FaTachometerAlt, FaEye, FaFileAlt, FaUserFriends, FaCogs, FaQuestionCircle, FaChevronDown, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaBars, FaArrowLeft, FaTimes, FaTachometerAlt, FaEye, FaFileAlt, FaUserFriends, FaCogs, FaQuestionCircle, FaChevronDown, FaEdit, FaTrash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,7 +13,9 @@ const Dashboard = () => {
   const [attend, setAttend] = useState([]);
   const [congratulations, setCongratulations] = useState([]);
   const [gifts, setGifts] = useState([]);
+  const [invitations, setInvitations] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const toggleSidebar = () => {
     if (sidebarOpen) {
@@ -114,27 +116,58 @@ const Dashboard = () => {
         console.error('Error fetching gifts:', error);
       }
     };
+    const fetchInvitations = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/invitations');
+        setInvitations(response.data);
+      } catch (error) {
+        console.error('Error fetching invitations:', error);
+      }
+    };
 
     fetchGuests();
     fetchAttends();
     fetchCongratulations();
     fetchGifts();
+    fetchInvitations();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000); // Update time every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const getGreeting = () => {
+    const hour = currentTime.getHours();
+    if (hour >= 0 && hour < 11) return 'Selamat Pagi';
+    if (hour >= 11 && hour < 15) return 'Selamat Siang';
+    if (hour >= 15 && hour < 18) return 'Selamat Sore';
+    return 'Selamat Malam';
+  };
+
+
+  const getBrideAndGroomNames = () => {
+    const weddingInvitation = invitations.find(inv => inv.type === 'pernikahan');
+    return weddingInvitation ? weddingInvitation.name : 'Tamu';
+  };
 
   return (
     <div className="flex h-screen bg-gray-200">
       {/* Sidebar */}
-      <aside className={`bg-white text-gray-500 flex flex-col transition-width duration-300 ${sidebarOpen ? 'w-64' : 'w-20'}`}>
-      <div className="flex items-center justify-between p-4 text-2xl font-bold cursor-pointer mt-16">
-      <div onClick={toggleSidebar}>
-        {sidebarOpen ? 'Logo' : <FaBars />}
-      </div>
-      {sidebarOpen && (
-        <button onClick={toggleSidebar} className="text-gray-500">
-          <FaTimes />
-        </button>
-      )}
-    </div>
+      <aside className={`bg-white text-gray-500 flex flex-col transition-width duration-300 ${sidebarOpen ? 'w-64' : 'w-20 p-3'}`}>
+        <div className="flex items-center justify-between p-4 text-2xl font-bold cursor-pointer mt-16">
+          <div onClick={toggleSidebar}>
+            {sidebarOpen ? 'Logo' : <FaBars />}
+          </div>
+          {sidebarOpen && (
+            <button onClick={toggleSidebar} className="text-gray-500">
+              <FaTimes />
+            </button>
+          )}
+        </div>
         <nav className="flex-1">
           <ul>
             <li className="p-4 flex items-center cursor-pointer" onClick={() => handleContentChange('Dashboard Content')}>
@@ -166,6 +199,7 @@ const Dashboard = () => {
                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Isi Submenu 3')}>Submenu 3</li>
               </ul>
             </li>
+
             <li className="p-4 flex flex-col">
               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleDropdown('tamu')}>
                 <div className="flex items-center">
@@ -180,6 +214,7 @@ const Dashboard = () => {
                 <li className="p-2 cursor-pointer" onClick={() => handleContentChange('Hadiah')}>Hadiah</li>
               </ul>
             </li>
+
             <li className="p-4 flex flex-col">
               <div className="flex items-center justify-between cursor-pointer" onClick={() => toggleDropdown('pengaturan')}>
                 <div className="flex items-center">
@@ -207,6 +242,13 @@ const Dashboard = () => {
         </button>
 
         <h1 className="text-2xl font-bold mb-4">{content}</h1>
+
+        {/* Greeting based on time and invitation name */}
+        {content === 'Dashboard Content' && (
+          <div className="mb-8 p-4 bg-white rounded shadow">
+            <h2 className="text-xl font-bold">{getGreeting()}, {getBrideAndGroomNames()}!</h2>
+          </div>
+        )}
 
         {/* Add the new statistics components */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -261,31 +303,72 @@ const Dashboard = () => {
           </div>
         )}
         {content === 'Daftar Kehadiran' && (
-              <div className="bg-white p-4 rounded shadow">
-                <h3 className="text-lg font-semibold mb-2">Daftar Kehadiran Tamu</h3>
-                
-                <table className="w-full mt-2 border-collapse">
-                  <thead>
-                    <tr>
-                      <th className="border p-2">Nama Tamu</th>
-                      <th className="border p-2">Status</th>
+          <div className="bg-white p-4 rounded shadow">
+            <h3 className="text-lg font-semibold mb-2">Daftar Kehadiran Tamu</h3>
+            <table className="w-full mt-2 border-collapse">
+              <thead>
+                <tr>
+                  <th className="border p-2">Nama Tamu</th>
+                  <th className="border p-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {attend.length > 0 ? (
+                  attend.map((attend, index) => (
+                    <tr key={index}>
+                      <td className="border p-2 text-center">{attend.name}</td>
+                      <td className="border p-2 text-center">{attend.attending}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {attend.map((attend, index) => (
-                      <tr key={index}>
-                        <td className="border p-2 text-center">{attend.name}</td>
-                        <td className="border p-2 text-center">{attend.attending}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))
+                ) : (
+                  <tr>
+                    <td className="border p-2 text-center" colSpan="2">
+                      Belum ada data kehadiran
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {content === 'Ucapan' && (
+          <div className="bg-white p-4 rounded shadow">
+            <h2 className="text-lg font-bold mb-4">Daftar Ucapan</h2>
+            {congratulations.length > 0 ? (
+              <ul>
+                {congratulations.map((congratulations, index) => (
+                  <li key={index} className="flex justify-between items-center mb-2">
+                    <span>{congratulations.name}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Belum ada Ucapan yang diterima</p>
             )}
-        {/* Add similar sections for other content if needed */}
+          </div>
+        )}
+
+        {content === 'Hadiah' && (
+          <div className="bg-white p-4 rounded shadow">
+            <h2 className="text-lg font-bold mb-4">Daftar Hadiah</h2>
+            {gifts.length > 0 ? (
+              <ul>
+                {gifts.map((gift, index) => (
+                  <li key={index} className="flex justify-between items-center mb-2">
+                    <span>{gift.name}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Belum ada hadiah yang diterima</p>
+            )}
+          </div>
+        )}
       </main>
     </div>
   );
 };
 
 export default Dashboard;
+
