@@ -1,7 +1,7 @@
 const database = require('./library/database');
 
 const User = sequelize.define('User', {
-  name: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -14,6 +14,18 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 });
 
 module.exports = User;

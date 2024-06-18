@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 17, 2024 at 06:43 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Jun 18, 2024 at 04:41 AM
+-- Server version: 10.11.7-MariaDB-log
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,9 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbl_admins` (
-  `username` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_admin` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tbl_admins`
+--
+
+INSERT INTO `tbl_admins` (`id_admin`, `username`, `email`, `password`) VALUES
+(2, 'admin', 'Admin@gmail.com', '$2a$10$RO5a6UgZRaAGbnAul.VcJOxZa/U3uEMy7jICmpMIurMyO46F1KAyS');
 
 -- --------------------------------------------------------
 
@@ -73,20 +82,6 @@ CREATE TABLE `tbl_invitations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_registers`
---
-
-CREATE TABLE `tbl_registers` (
-  `username` varchar(50) NOT NULL,
-  `password` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `no_telp` varchar(50) NOT NULL,
-  `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_rsvps`
 --
 
@@ -96,6 +91,29 @@ CREATE TABLE `tbl_rsvps` (
   `status_reservasi` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_users`
+--
+
+CREATE TABLE `tbl_users` (
+  `id_users` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tbl_users`
+--
+
+INSERT INTO `tbl_users` (`id_users`, `username`, `email`, `password`, `phone`, `address`, `role`) VALUES
+(1, 'mail', 'mail@gmail.com', '$2a$10$il3FCIFOyfvcTxlujwDmee2w5T0jjJhQ4C0v1IkoIBIJ5uqMCikwe', '012345678999', 'Surabaya', 'user');
+
 --
 -- Indexes for dumped tables
 --
@@ -104,8 +122,7 @@ CREATE TABLE `tbl_rsvps` (
 -- Indexes for table `tbl_admins`
 --
 ALTER TABLE `tbl_admins`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `password` (`password`);
+  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `tbl_detail_invitations`
@@ -129,13 +146,6 @@ ALTER TABLE `tbl_invitations`
   ADD UNIQUE KEY `nama` (`nama`);
 
 --
--- Indexes for table `tbl_registers`
---
-ALTER TABLE `tbl_registers`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `password` (`password`);
-
---
 -- Indexes for table `tbl_rsvps`
 --
 ALTER TABLE `tbl_rsvps`
@@ -143,8 +153,20 @@ ALTER TABLE `tbl_rsvps`
   ADD UNIQUE KEY `nama` (`nama`);
 
 --
+-- Indexes for table `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  ADD PRIMARY KEY (`id_users`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `tbl_admins`
+--
+ALTER TABLE `tbl_admins`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_detail_invitations`
@@ -159,15 +181,14 @@ ALTER TABLE `tbl_guests`
   MODIFY `id_undangan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT for table `tbl_users`
 --
+ALTER TABLE `tbl_users`
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for table `tbl_admins`
+-- Constraints for dumped tables
 --
-ALTER TABLE `tbl_admins`
-  ADD CONSTRAINT `tbl_admins_ibfk_1` FOREIGN KEY (`username`) REFERENCES `tbl_registers` (`username`),
-  ADD CONSTRAINT `tbl_admins_ibfk_2` FOREIGN KEY (`password`) REFERENCES `tbl_registers` (`password`);
 
 --
 -- Constraints for table `tbl_detail_invitations`
