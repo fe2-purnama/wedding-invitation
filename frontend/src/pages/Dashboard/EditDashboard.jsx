@@ -15,8 +15,15 @@ const Dashboard = () => {
   const [gifts, setGifts] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const toggleSidebar = () => {
+    if (sidebarOpen) {
+      setDropdownOpen(''); // Menutup semua dropdown ketika sidebar di tutup
+    }
+    setSidebarOpen(!sidebarOpen);
+  };
+
   const toggleDropdown = (menu) => {
+    if (!sidebarOpen) setSidebarOpen(true); // Membuka sidebar ketika dropdown di pencet
     setDropdownOpen(dropdownOpen === menu ? '' : menu);
   };
 
@@ -221,7 +228,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Rest of your content */}
         {content === 'Tamu Undangan' && (
           <div className="bg-white p-4 rounded shadow">
             <h2 className="text-lg font-bold mb-4">Guest List</h2>
