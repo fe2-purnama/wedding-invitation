@@ -13,9 +13,9 @@ const Dashboard = () => {
   const [attend, setAttend] = useState([]);
   const [congratulations, setCongratulations] = useState([]);
   const [gifts, setGifts] = useState([]);
-  const [invitations, setInvitations] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [brideGroomName, setBrideGroomName] = useState('');
 
   const toggleSidebar = () => {
     if (sidebarOpen) {
@@ -116,20 +116,23 @@ const Dashboard = () => {
         console.error('Error fetching gifts:', error);
       }
     };
-    const fetchInvitations = async () => {
+
+    const fetchBrideGroomName = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/invitations');
-        setInvitations(response.data);
+        // Gantilah URL dengan endpoint yang sesuai
+        const response = await axios.get('http://localhost:3000/invitation');
+        setBrideGroomName(response.data.name); // Pastikan response.data.name sesuai dengan struktur data Anda
       } catch (error) {
-        console.error('Error fetching invitations:', error);
+        console.error('Error fetching bride and groom name:', error);
       }
     };
+    
 
     fetchGuests();
     fetchAttends();
     fetchCongratulations();
     fetchGifts();
-    fetchInvitations();
+    fetchBrideGroomName();
   }, []);
 
   useEffect(() => {
@@ -149,10 +152,6 @@ const Dashboard = () => {
   };
 
 
-  const getBrideAndGroomNames = () => {
-    const weddingInvitation = invitations.find(inv => inv.type === 'pernikahan');
-    return weddingInvitation ? weddingInvitation.name : 'Tamu';
-  };
 
   return (
     <div className="flex h-screen bg-gray-200">
@@ -245,10 +244,12 @@ const Dashboard = () => {
 
         {/* Greeting based on time and invitation name */}
         {content === 'Dashboard Content' && (
-          <div className="mb-8 p-4 bg-white rounded shadow">
-            <h2 className="text-xl font-bold">{getGreeting()}, {getBrideAndGroomNames()}!</h2>
+          <div > {/* className="mb-8 p-4 bg-white rounded shadow" */}
+            <h2 className="text-xl font-bold">{getGreeting()}, {brideGroomName}!</h2>
           </div>
         )}
+
+        
 
         {/* Add the new statistics components */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
