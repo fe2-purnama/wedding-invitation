@@ -6,15 +6,14 @@ const pool = require('../library/database'); // mengimpor pool koneksi
 
 // Route untuk registrasi pengguna
 router.post('/register', async (req, res) => {
-  const { username, email, password, phone, address } = req.body;
-
+  const { username, email, password, phone, address, role } = req.body;
   try {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Simpan ke database menggunakan pool
-    const sql = 'INSERT INTO tbl_users (username, email, password, phone, address) VALUES (?, ?, ?, ?, ?)';
-    pool.query(sql, [username, email, hashedPassword, phone, address], (err, result) => {
+    const sql = 'INSERT INTO tbl_users (username, email, password, phone, address, role) VALUES (?, ?, ?, ?, ?, ?)';
+    pool.query(sql, [username, email, hashedPassword, phone, address, role], (err, result) => {
       if (err) {
         console.error(err);
         res.status(500).send({ error: 'Error!! gagal register' });
@@ -55,7 +54,7 @@ router.post('/login', async (req, res) => {
 
       // Buat token JWT
       const token = jwt.sign({ userId: results[0].id }, 'secret', { expiresIn: '1h' });
-      res.send({ token });
+      res.send({ username: username, token, message: 'Login Accepted' });
     });
   } catch (error) {
     console.error(error);
@@ -65,7 +64,7 @@ router.post('/login', async (req, res) => {
 
 // Route untuk registrasi Admin
 router.post('/registerAdmin', async (req, res) => {
-  const { username, email, password} = req.body;
+  const { username, email, password } = req.body;
 
   try {
     // Hash password
@@ -114,7 +113,7 @@ router.post('/loginAdmin', async (req, res) => {
 
       // Buat token JWT
       const token = jwt.sign({ userId: results[0].id }, 'secret', { expiresIn: '1h' });
-      res.send({ token });
+      res.send({ token: token, message: 'Login Accepted' });
     });
   } catch (error) {
     console.error(error);

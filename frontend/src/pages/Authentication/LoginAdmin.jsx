@@ -5,7 +5,7 @@ import axios from 'axios';
 import bg from '../../assets/lll.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const LoginAdmin = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -14,19 +14,20 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userResponse = await axios.post(`http://localhost:3000/auth/login`, { username, password }); //Change IP HERE
-      const dataUser = userResponse.data;
-      if (dataUser.message == 'Login Accepted') {
-        sessionStorage.setItem('admin', JSON.stringify(dataUser.token));
-        alert(`Welcome, ${dataUser.username}`);
-        navigate('/dashboard/home'); // Redirect to user dashboard
+      const adminResponse = await axios.post(`http://localhost:3000/auth/loginAdmin`, { username, password });
+      const dataAdmin = adminResponse.data;
+      if (dataAdmin.message == 'Login Accepted') {
+        sessionStorage.setItem('admin', JSON.stringify(dataAdmin.token));
+        alert('Welcome, Admin');
+        navigate('/admin');
       } else {
-        alert('Wrong Username or Password');
-        setError('Something error, Wrong Username or Password'); // Display error if no user or admin found
+        setUsername('');
+        setPassword('');
+        setError('Something wrong with your Username or password.' + e);
       }
     } catch (error) {
       console.error('Error Login:', error);
-      setError('Error Login. Please try again later.');
+      setError('Error registering. Please try again later.');
     }
   };
 
@@ -36,7 +37,7 @@ const Login = () => {
         <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 rounded-lg md:rounded-l-none md:rounded-r-lg">
           <form className="my-20 space-y-6 items-center justify-center" onSubmit={handleLogin}>
             <div>
-              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login</h2>
+              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login Admin</h2>
             </div>
             {error && <p className="text-red-500 text-xs italic mb-4">{error}</p>}
             <div className="flex items-center border rounded-lg">
@@ -89,11 +90,11 @@ const Login = () => {
                 Login
               </button>
             </div>
-            <div className="text-sm text-center">
+            {/* <div className="text-sm text-center">
               <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
                 <Link to="/register">Silahkan register jika belum punya akun</Link>
               </button>
-            </div>
+            </div> */}
           </form>
         </div>
         <div className="hidden md:block md:w-1/2">
@@ -104,8 +105,8 @@ const Login = () => {
   );
 };
 
-Login.propTypes = {
+LoginAdmin.propTypes = {
   setIsRegister: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default LoginAdmin;
