@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-
+const util = require('util');
 // Buat pool koneksi ke database MySQL
 const pool = mysql.createPool({
   connectionLimit: 10, // jumlah maksimal koneksi dalam pool
@@ -18,5 +18,5 @@ pool.getConnection((err, connection) => {
     connection.release(); // lepaskan koneksi setelah selesai
   }
 });
-
+pool.query = util.promisify(pool.query);
 module.exports = pool;

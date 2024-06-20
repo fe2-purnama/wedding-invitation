@@ -6,16 +6,17 @@ const authMiddleware = require('../middleware/authMiddleware');
 // Middleware untuk memastikan user telah login
 router.use(authMiddleware);
 
-// Endpoint untuk membuat undangan baru
+//  membuat undangan baru
 router.post('/', undanganController.createInvitation);
 
-// Endpoint untuk mendapatkan semua undangan
+
+// melihat semua undangan
 router.get('/', undanganController.getAllInvitations);
 
-// Endpoint untuk mendapatkan detail undangan berdasarkan ID
+//  detail undangan berdasarkan ID
 router.get('/:id', undanganController.getInvitationById);
 
-// Endpoint untuk menghapus undangan berdasarkan ID
+//  menghapus undangan berdasarkan ID
 router.delete('/:id', undanganController.deleteInvitation);
 
 module.exports = router;

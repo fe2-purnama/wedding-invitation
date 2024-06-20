@@ -8,7 +8,7 @@ exports.login = async (req, res) => {
 
     try {
         // Find user by username
-        const sql = 'SELECT * FROM users WHERE username = ?';
+        const sql = 'SELECT * FROM tbl_users WHERE username = ?';
         pool.query(sql, [username], async (err, results) => {
             if (err) {
                 console.error(err);
