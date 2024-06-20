@@ -1,6 +1,6 @@
-const database = require('./library/database');
-
-const User = sequelize.define('User', {
+const { Sequelize } = require('sequelize');
+// const database = require('./library/database');
+const User = Sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
