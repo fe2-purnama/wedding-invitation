@@ -2,12 +2,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../library/database');
 
-// Login a user
+// Login user
 exports.login = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // Find user by username
         const sql = 'SELECT * FROM tbl_users WHERE username = ?';
         pool.query(sql, [username], async (err, results) => {
             if (err) {
@@ -16,15 +15,13 @@ exports.login = async (req, res) => {
             }
 
             if (results.length === 0) {
-                return res.status(404).send({ error: 'User not found' });
+                return res.status(404).send({ error: 'User tidak ada' });
             }
 
             const user = results[0];
-
-            // Compare provided password with hashed password
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                return res.status(401).send({ error: 'Invalid credentials' });
+                return res.status(401).send({ error: 'password salah' });
             }
 
             // Create JWT token

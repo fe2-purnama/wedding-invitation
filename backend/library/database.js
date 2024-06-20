@@ -1,15 +1,14 @@
 const mysql = require('mysql');
 const util = require('util');
-// Buat pool koneksi ke database MySQL
 const pool = mysql.createPool({
-  connectionLimit: 10, // jumlah maksimal koneksi dalam pool
+  connectionLimit: 10, 
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'wedding_db'
 });
 
-// Kondisi untuk mengecek koneksi database
+// mengecek koneksi database
 pool.getConnection((err, connection) => {
   if (err) {
     console.error('Error connecting to database:', err);
