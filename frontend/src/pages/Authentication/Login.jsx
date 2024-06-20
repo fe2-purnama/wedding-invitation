@@ -14,15 +14,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userResponse = await axios.post(`http://localhost:3000/auth/login`, { username, password }); //Change IP HERE
+      const userResponse = await axios.post(`http://localhost:3000/api/v1/auth/loginUser`, { username, password }); 
       const dataUser = userResponse.data;
       if (dataUser.message == 'Login Accepted') {
-        sessionStorage.setItem('admin', JSON.stringify(dataUser.token));
-        alert(`Welcome, ${dataUser.username}`);
-        navigate('/dashboard/home'); // Redirect to user dashboard
+        localStorage.setItem('user', JSON.stringify(dataUser.data));
+        sessionStorage.setItem('userToken', JSON.stringify(dataUser.token));
+        alert(`Welcome, ${dataUser.data.username}`);
+        navigate('/dashboard/home');
       } else {
         alert('Wrong Username or Password');
-        setError('Something error, Wrong Username or Password'); // Display error if no user or admin found
+        setError('Something error, Wrong Username or Password');
       }
     } catch (error) {
       console.error('Error Login:', error);

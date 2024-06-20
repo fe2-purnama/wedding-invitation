@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import mainBanner from '../assets/img/main-banner.gif';

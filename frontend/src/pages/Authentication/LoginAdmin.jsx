@@ -14,10 +14,11 @@ const LoginAdmin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const adminResponse = await axios.post(`http://localhost:3000/auth/loginAdmin`, { username, password });
+      const adminResponse = await axios.post(`http://localhost:3000/api/v1/auth/loginAdmin`, { username, password });
       const dataAdmin = adminResponse.data;
       if (dataAdmin.message == 'Login Accepted') {
-        sessionStorage.setItem('admin', JSON.stringify(dataAdmin.token));
+        localStorage.setItem('user', JSON.stringify(dataAdmin.data));
+        sessionStorage.setItem('userToken', JSON.stringify(dataAdmin.token));
         alert('Welcome, Admin');
         navigate('/admin');
       } else {

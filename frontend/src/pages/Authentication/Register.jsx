@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios
-        .post('http://localhost:3000/auth/register', { //Ganti URL BACKEND Disini!!!
+        .post('http://localhost:3000/api/v1/auth/registerUser', { //Ganti URL BACKEND Disini!!!
           username,
           email,
           password,
@@ -26,7 +26,7 @@ const Register = () => {
           address,
           role: 'user',
         });
-        alert("Registrasi Berhasil");
+        alert("Registration success");
         navigate('/login'); // Redirect to user dashboard
     } catch (error) {
       setUsername('')

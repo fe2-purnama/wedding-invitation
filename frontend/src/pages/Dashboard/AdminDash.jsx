@@ -9,16 +9,17 @@ const Dashboard = () => {
   const [content, setContent] = useState('Dashboard Content');
   const [users, setUsers] = useState([]);
   const [invitations, setInvitations] = useState([]);
-  const [editUserIndex, setEditUserIndex] = useState(null);
   const [editInvitationIndex, setEditInvitationIndex] = useState(null);
-  const [editInvitationId, setEditInvitationId] = useState(null); // Add editInvitationId state
+  const [editInvitationId, setEditInvitationId] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const handleContentChange = (newContent) => setContent(newContent);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUsers(); // Fetch users on component mount
+    fetchUsers();
   }, []);
 
   const handleSelectAll = (e) => {
@@ -58,12 +59,12 @@ const Dashboard = () => {
     try {
       const token = sessionStorage.getItem('token');
       const response = await axios.get('http://localhost:3000/api/v1/users', {
-        //GANTI IP DARI SERVER
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUsers(response.data);
+      setUsers(response.data.data);
+      localStorage.setItem('datas', JSON.stringify(response.data));
     } catch (error) {
       console.error('Error fetching users:', error);
       alert('Error fetching users');
@@ -76,50 +77,63 @@ const Dashboard = () => {
     const newUser = Object.fromEntries(formData.entries());
     newUser.role = 'user';
     try {
-      // Replace with your actual API endpoint
-      const response = await axios.post('http://localhost:3000/auth/register', newUser);
-      // Update the state with the newly added user
+      const response = await axios.post('http://localhost:3000/api/v1/auth/registerUser', newUser);
       setUsers((prevUsers) => [...prevUsers, response.data]);
-      // Alert success
+      localStorage.setItem('user', JSON.stringify(response.data));
       alert('User added successfully');
       window.location.reload();
+      setUsers('');
     } catch (error) {
       console.error('Error adding user:', error);
       alert('Error adding user');
     }
-
-    // Reset the form
     e.target.reset();
   };
 
   const handleEditUser = async (index) => {
-    const user = users[index];
-    document.querySelector('form').elements.namedItem('username').value = user.username;
-    document.querySelector('form').elements.namedItem('email').value = user.email;
-    document.querySelector('form').elements.namedItem('password').value = user.password;
-    document.querySelector('form').elements.namedItem('phone').value = user.phone;
-    document.querySelector('form').elements.namedItem('address').value = user.address;
-    
+    // const token = sessionStorage.getItem('userToken');
+    const userToUpdate = users[index];
     try {
-      const response = await axios.put(`http://localhost:3000/api/v1/users/${user.id}`, user);
-      setEditUserIndex(index);
-      updatedUsers[index] = response.data;
-      const updatedUsers = [...users];
+      await axios.put(`http://localhost:3000/api/v1/user/${userToUpdate.id_users}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${token}`,
+        },
+        data: {
+          id_users: userToUpdate.id_users,
+          username: userToUpdate.username,
+          email: userToUpdate.email,
+          password: userToUpdate.password,
+          phone: userToUpdate.phone,
+          address: userToUpdate.address,
+          role: userToUpdate.role,
+        },
+      });
+      const updatedUsers = users.map((user, idx) => (idx === index ? userToUpdate : user));
       setUsers(updatedUsers);
       alert('User updated successfully');
     } catch (error) {
+      console.log(userToUpdate.id_users);
       console.error('Error updating user:', error);
       alert('Error updating user');
     }
   };
 
   const handleDeleteUser = async (index) => {
-    const user = users[index];
+    const token = sessionStorage.getItem('userToken');
+    const userToDelete = users[index]; // Assuming users is an array of user objects
+    console.log(userToDelete.id_users);
     try {
-      await axios.delete(`http://localhost:3000/api/v1/users/${user.id}`); // Replace with your actual API endpoint
-      const updatedUsers = users.filter((_, i) => i !== index);
-      setUsers(updatedUsers);
-      alert('User deleted successfully');
+      // Assuming `userToUpdate.id` is the user's ID and `userToUpdate.id_users` is the id_users
+      await axios.delete(`http://localhost:3000/api/v1/user/${userToDelete.id_users}`, {
+        id_users: userToDelete.id_users, // Include id_users in the request body if necessary
+        headers: {
+          Authorization: `Bearer ${token}`, // Include authorization header if needed
+        },
+      });
+      const deletedUser = users.map((user, idx) => (idx === index ? deletedUser : user));
+      setUsers(deletedUser);
+      alert('User deleted');
     } catch (error) {
       console.error('Error deleting user:', error);
       alert('Error deleting user');
@@ -148,6 +162,7 @@ const Dashboard = () => {
                     <input type="checkbox" onChange={handleSelectAll} />
                   </th>
                 )}
+                <th className="border border-gray-300 p-2">ID</th>
                 <th className="border border-gray-300 p-2">Username</th>
                 <th className="border border-gray-300 p-2">Email</th>
                 <th className="border border-gray-300 p-2">Password</th>
@@ -162,6 +177,7 @@ const Dashboard = () => {
                   <td className="border border-gray-300 p-2 text-center">
                     <input type="checkbox" />
                   </td>
+                  <td className="border border-gray-300 p-2 text-center">{user.id_users}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.username}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.email}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.password}</td>
