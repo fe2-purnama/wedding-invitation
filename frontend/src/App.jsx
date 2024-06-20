@@ -51,7 +51,6 @@ import Admin from './pages/Dashboard/AdminDash';
 import InvitationManager from './Routes/InvitationManager';
 import { ThemeProvider } from './components/Theme/ThemeContext';
 import LoginAdmin from './pages/Authentication/LoginAdmin';
-// import ForgotPassword from './pages/Authentication/ForgotPassword';
 
 const App = () => {
   return (
@@ -64,7 +63,6 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/dashboard/*" element={<InvitationManager />} />
-          {/* <Route path="/forgot" element={<ForgotPassword />} /> */}
         </Routes>
       </Router>
     </ThemeProvider>

@@ -16,6 +16,7 @@ const Login = () => {
     try {
       const userResponse = await axios.post(`http://localhost:3000/auth/login`, { username, password }); //Change IP HERE
       const dataUser = userResponse.data;
+      console.log(dataUser);
       if (dataUser.message == 'Login Accepted') {
         sessionStorage.setItem('admin', JSON.stringify(dataUser.token));
         alert(`Welcome, ${dataUser.username}`);
