@@ -49,7 +49,7 @@ const Dashboard = () => {
     if (editIndex !== null) {
       const updatedGuest = { name: guestName };
       try {
-        const response = await axios.put(`http://localhost:3000/guests/${guests[editIndex].id}`, updatedGuest);
+        const response = await axios.put(`http://localhost:5000/guests/${guests[editIndex].id}`, updatedGuest);
         const updatedGuests = guests.map((guest, index) => (index === editIndex ? response.data : guest));
         setGuests(updatedGuests);
         setEditIndex(null);
@@ -59,7 +59,7 @@ const Dashboard = () => {
     } else {
       const newGuest = { name: guestName };
       try {
-        const response = await axios.post('http://localhost:3000/guests', newGuest);
+        const response = await axios.post('http://localhost:5000/guests', newGuest);
         setGuests([...guests, response.data]);
       } catch (error) {
         console.error('Error adding guest:', error);
@@ -75,9 +75,20 @@ const Dashboard = () => {
 
   const deleteGuest = async (index) => {
     try {
-      await axios.delete(`http://localhost:3000/guests/${guests[index].id}`);
+      await axios.delete(`http://localhost:5000/guests/${guests[index].id}`);
       const updatedGuests = guests.filter((_, i) => i !== index);
       setGuests(updatedGuests);
+    } catch (error) {
+      console.error('Error deleting guest:', error);
+    }
+  };
+  const deleteAttend = async (index) => {
+    try {
+      // Hapus data dari database berdasarkan ID
+      await axios.delete(`http://localhost:5000/attend/${attend[index].id}`);
+      
+      // Perbarui state attend untuk menghapus item yang dihapus
+      setAttend(prevAttend => prevAttend.filter((_, i) => i !== index));
     } catch (error) {
       console.error('Error deleting guest:', error);
     }
@@ -86,7 +97,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchGuests = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/guests');
+        const response = await axios.get('http://localhost:5000/guests');
         setGuests(response.data);
       } catch (error) {
         console.error('Error fetching guests:', error);
@@ -94,7 +105,7 @@ const Dashboard = () => {
     };
     const fetchAttends = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/attend');
+        const response = await axios.get('http://localhost:5000/attend');
         setAttend(response.data);
       } catch (error) {
         console.error('Error fetching attendance:', error);
@@ -102,7 +113,7 @@ const Dashboard = () => {
     };
     const fetchCongratulations = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/congratulations');
+        const response = await axios.get('http://localhost:5000/congratulations');
         setCongratulations(response.data);
       } catch (error) {
         console.error('Error fetching congratulations:', error);
@@ -110,7 +121,7 @@ const Dashboard = () => {
     };
     const fetchGifts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/gifts');
+        const response = await axios.get('http://localhost:5000/gifts');
         setGifts(response.data);
       } catch (error) {
         console.error('Error fetching gifts:', error);
@@ -120,7 +131,7 @@ const Dashboard = () => {
     const fetchBrideGroomName = async () => {
       try {
         // Gantilah URL dengan endpoint yang sesuai
-        const response = await axios.get('http://localhost:3000/invitation');
+        const response = await axios.get('http://localhost:5000/invitation');
         setBrideGroomName(response.data.name); // Pastikan response.data.name sesuai dengan struktur data Anda
       } catch (error) {
         console.error('Error fetching bride and groom name:', error);
@@ -311,6 +322,7 @@ const Dashboard = () => {
                 <tr>
                   <th className="border p-2">Nama Tamu</th>
                   <th className="border p-2">Status</th>
+                  <th className="border p-2">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -319,6 +331,11 @@ const Dashboard = () => {
                     <tr key={index}>
                       <td className="border p-2 text-center">{attend.name}</td>
                       <td className="border p-2 text-center">{attend.attending}</td>
+                      <td className="border p-2 text-center">
+                        <button onClick={() => deleteAttend(index)} className="text-red-500">
+                          <FaTrash />
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (

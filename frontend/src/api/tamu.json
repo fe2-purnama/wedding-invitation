@@ -19,28 +19,19 @@
     {
       "id": "7ec6",
       "name": "rissa"
+    },
+    {
+      "id": "e8e5",
+      "name": "brian"
+    },
+    {
+      "id": "3028",
+      "name": "kevin"
+    },
+    {
+      "id": "c7ce",
+      "name": "hesty"
     }
   ],
-  "attend": [
-    {
-      "id": "7e13",
-      "name": "ilham",
-      "attending": "hadir"
-    },
-    {
-      "id": "f90d",
-      "name": "dika",
-      "attending": "absen"
-    },
-    {
-      "id": "0a61",
-      "name": "tirta",
-      "attending": "hadir"
-    },
-    {
-      "id": "3049",
-      "name": "mahmud",
-      "attending": "hadir"
-    }
-  ]
+  "attend": []
 }
