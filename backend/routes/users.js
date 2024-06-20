@@ -2,43 +2,6 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../library/database'); // mengimpor pool koneksi
 
-router.get('/forgotpw', async (req, res) => {
-  const { email } = req.body;
-  try {
-    // Check if user exists
-    const existingUser = await pool.query('SELECT * FROM tbl_users WHERE email = ?', [email]);
-    if (existingUser.length === 0) {
-      res.status(404).send({ error: 'User not found' });
-    } else {
-      const RandomNumberGenerator = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
-      res.status(200).send({ message: `Your password reset code is: ${RandomNumberGenerator}` });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Error!! gagal reset password' });
-  }
-});
-
-router.put('/updatepw', async (req, res) => {
-  const id_users = req.params.id;
-  const {password} = req.body;
-
-  try {
-    const sql = 'UPDATE tbl_users SET password = ? WHERE id_users = ?';
-    pool.query(sql, [password, id_users], (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send({ error: 'Error updating user' });
-      } else {
-        res.status(200).json({ message: 'User updated successfully', affectedRows: result.affectedRows });
-      }
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Error updating user' });
-  }
-});
-
 router.get('/users', async (req, res) => {
   const { username, email, password, phone, address, role } = req.body;
   try {

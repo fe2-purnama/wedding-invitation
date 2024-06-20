@@ -50,7 +50,6 @@ import Register from './pages/Authentication/Register';
 import Admin from './pages/Dashboard/AdminDash';
 import InvitationManager from './Routes/InvitationManager';
 import { ThemeProvider } from './components/Theme/ThemeContext';
-import LoginAdmin from './pages/Authentication/LoginAdmin';
 
 const App = () => {
   return (
@@ -59,7 +58,6 @@ const App = () => {
         <Routes>
           <Route path="/*" element={<HomePageRoute />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/loginAdmin" element={<LoginAdmin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/dashboard/*" element={<InvitationManager />} />

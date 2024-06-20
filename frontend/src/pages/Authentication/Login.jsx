@@ -14,19 +14,25 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userResponse = await axios.post(`http://localhost:3000/auth/login`, { username, password }); //Change IP HERE
-      const dataUser = userResponse.data;
-      console.log(dataUser);
-      if (dataUser.message == 'Login Accepted') {
-        sessionStorage.setItem('admin', JSON.stringify(dataUser.token));
-        alert(`Welcome, ${dataUser.username}`);
-        navigate('/dashboard/home'); // Redirect to user dashboard
+      const response = await axios.post(`http://localhost:3000/auth/login`, { username, password });
+      const datas = response.data;
+      if (datas.message == 'Login Accepted') {
+        if (datas.role == 'user') {
+          sessionStorage.setItem('user', JSON.stringify(datas.token));
+          alert(`Welcome, ${datas.username}`);
+          navigate('/dashboard/home');
+        }
+        if (datas.role == 'admin') {
+          sessionStorage.setItem('admin', JSON.stringify(datas.token));
+          alert('Welcome, Admin');
+          navigate('/admin');
+        }
       } else {
         alert('Wrong Username or Password');
-        setError('Something error, Wrong Username or Password'); // Display error if no user or admin found
+        setError('Wrong Username or Password');
       }
     } catch (error) {
-      console.error('Error Login:', error);
+      alert('Error Login. Please try again later.');
       setError('Error Login. Please try again later.');
     }
   };
