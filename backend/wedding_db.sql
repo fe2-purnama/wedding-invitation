@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 18, 2024 at 04:41 AM
+-- Generation Time: Jun 20, 2024 at 09:36 AM
 -- Server version: 10.11.7-MariaDB-log
 -- PHP Version: 8.1.10
 
@@ -112,7 +112,8 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_users`, `username`, `email`, `password`, `phone`, `address`, `role`) VALUES
-(1, 'mail', 'mail@gmail.com', '$2a$10$il3FCIFOyfvcTxlujwDmee2w5T0jjJhQ4C0v1IkoIBIJ5uqMCikwe', '012345678999', 'Surabaya', 'user');
+(1, 'mail', 'mail@gmail.com', '$2a$10$il3FCIFOyfvcTxlujwDmee2w5T0jjJhQ4C0v1IkoIBIJ5uqMCikwe', '012345678999', 'Surabaya', 'user'),
+(3, 'admin', 'admin@gmail.com', '$2a$10$mmefj7jpPXFGeOjmQxseauFxk224ptzsWwbde.Mc0f4Ny4CacRhuS', '08177888999', 'Surabaya', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -184,7 +185,7 @@ ALTER TABLE `tbl_guests`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
