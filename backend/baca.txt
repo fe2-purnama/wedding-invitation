@@ -1,1 +1,13 @@
 upload setup Backend disini
+
+usahakan sudah pindah ke branch main, jika belum masukkan query git : 
+git checkout main
+
+lalu git pull agar semua kode yang ada di main bisa diambil kedalam device kita
+git pull
+
+lalu masukkan query git agar node_modules terinstall:
+npm install
+
+lalu masukkan query git ini, agar program dari backend berjalan:
+npm start

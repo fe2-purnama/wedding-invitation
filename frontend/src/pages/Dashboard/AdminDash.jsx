@@ -17,38 +17,13 @@ const Dashboard = () => {
   const handleContentChange = (newContent) => setContent(newContent);
   const navigate = useNavigate();
 
-  // const handleAddUser = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const newUser = Object.fromEntries(formData.entries());
-  //   if (editUserIndex !== null) {
-  //     const updatedUsers = users.map((user, index) => index === editUserIndex ? newUser : user);
-  //     setUsers(updatedUsers);
-  //     setEditUserIndex(null);
-  //   } else {
-  //     setUsers([...users, newUser]);
-  //   }
-  //   e.target.reset();
-  // };
-
-  // const handleEditUser = (index) => {
-  //   setEditUserIndex(index);
-  //   const user = users[index];
-  //   document.querySelector('form').elements.namedItem('username').value = user.username;
-  //   document.querySelector('form').elements.namedItem('email').value = user.email;
-  //   document.querySelector('form').elements.namedItem('password').value = user.password;
-  //   document.querySelector('form').elements.namedItem('phone').value = user.phone;
-  //   document.querySelector('form').elements.namedItem('address').value = user.address;
-  // };
-
-  
   useEffect(() => {
     fetchUsers(); // Fetch users on component mount
-  }, []); 
+  }, []);
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
-    document.querySelectorAll('tbody input[type="checkbox"]').forEach(checkbox => checkbox.checked = checked);
+    document.querySelectorAll('tbody input[type="checkbox"]').forEach((checkbox) => (checkbox.checked = checked));
   };
 
   const handleEditInvitation = (index) => {
@@ -63,7 +38,7 @@ const Dashboard = () => {
     const formData = new FormData(e.target);
     const newInvitation = Object.fromEntries(formData.entries());
     if (editInvitationIndex !== null) {
-      const updatedInvitations = invitations.map((invitation, index) => index === editInvitationIndex ? { ...newInvitation, invitationId: editInvitationId } : invitation);
+      const updatedInvitations = invitations.map((invitation, index) => (index === editInvitationIndex ? { ...newInvitation, invitationId: editInvitationId } : invitation));
       setInvitations(updatedInvitations);
       setEditInvitationIndex(null);
       setEditInvitationId(null);
@@ -79,11 +54,15 @@ const Dashboard = () => {
     setInvitations(invitations.filter((_, i) => i !== index));
   };
 
-  // const [users, setUsers] = useState([]);
-
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/users'); // Replace with your actual API endpoint
+      const token = sessionStorage.getItem('token');
+      const response = await axios.get('http://localhost:3000/api/v1/users', {
+        //GANTI IP DARI SERVER
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -95,28 +74,34 @@ const Dashboard = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newUser = Object.fromEntries(formData.entries());
+    newUser.role = 'user';
     try {
-      const response = await axios.post('http://localhost:5000/users', newUser); // Replace with your actual API endpoint
-      setUsers([...users, response.data]);
+      // Replace with your actual API endpoint
+      const response = await axios.post('http://localhost:3000/auth/register', newUser);
+      // Update the state with the newly added user
+      setUsers((prevUsers) => [...prevUsers, response.data]);
+      // Alert success
       alert('User added successfully');
+      window.location.reload();
     } catch (error) {
       console.error('Error adding user:', error);
       alert('Error adding user');
     }
+
+    // Reset the form
     e.target.reset();
   };
 
   const handleEditUser = async (index) => {
     const user = users[index];
+    document.querySelector('form').elements.namedItem('username').value = user.username;
+    document.querySelector('form').elements.namedItem('email').value = user.email;
+    document.querySelector('form').elements.namedItem('password').value = user.password;
+    document.querySelector('form').elements.namedItem('phone').value = user.phone;
+    document.querySelector('form').elements.namedItem('address').value = user.address;
     
-    
-     document.querySelector('form').elements.namedItem('username').value = user.username;
-     document.querySelector('form').elements.namedItem('email').value = user.email;
-     document.querySelector('form').elements.namedItem('password').value = user.password;
-     document.querySelector('form').elements.namedItem('phone').value = user.phone;
-     document.querySelector('form').elements.namedItem('address').value = user.address;
     try {
-      const response = await axios.put(`http://localhost:5000/users/${user.id}`, user);
+      const response = await axios.put(`http://localhost:3000/api/v1/users/${user.id}`, user);
       setEditUserIndex(index);
       updatedUsers[index] = response.data;
       const updatedUsers = [...users];
@@ -131,7 +116,7 @@ const Dashboard = () => {
   const handleDeleteUser = async (index) => {
     const user = users[index];
     try {
-      await axios.delete(`http://localhost:5000/users/${user.id}`); // Replace with your actual API endpoint
+      await axios.delete(`http://localhost:3000/api/v1/users/${user.id}`); // Replace with your actual API endpoint
       const updatedUsers = users.filter((_, i) => i !== index);
       setUsers(updatedUsers);
       alert('User deleted successfully');
@@ -140,7 +125,6 @@ const Dashboard = () => {
       alert('Error deleting user');
     }
   };
-
 
   const renderContent = () => {
     if (content === 'List User') {
@@ -152,12 +136,18 @@ const Dashboard = () => {
             <input name="password" type="password" placeholder="Password" className="mr-2 p-2 border" required />
             <input name="phone" type="tel" placeholder="Phone" className="mr-2 p-2 border" required />
             <input name="address" type="text" placeholder="Address" className="mr-2 p-2 border" required />
-            <button type="submit" className="p-2 bg-blue-500 text-white">Add</button>
+            <button type="submit" className="p-2 bg-blue-500 text-white">
+              Add
+            </button>
           </form>
           <table className="min-w-full bg-white border-collapse border border-gray-300">
             <thead>
               <tr>
-                {users.length > 0 && <th className="border border-gray-300 p-2"><input type="checkbox" onChange={handleSelectAll} /></th>}
+                {users.length > 0 && (
+                  <th className="border border-gray-300 p-2">
+                    <input type="checkbox" onChange={handleSelectAll} />
+                  </th>
+                )}
                 <th className="border border-gray-300 p-2">Username</th>
                 <th className="border border-gray-300 p-2">Email</th>
                 <th className="border border-gray-300 p-2">Password</th>
@@ -169,15 +159,21 @@ const Dashboard = () => {
             <tbody>
               {users.map((user, index) => (
                 <tr key={index}>
-                  <td className="border border-gray-300 p-2 text-center"><input type="checkbox" /></td>
+                  <td className="border border-gray-300 p-2 text-center">
+                    <input type="checkbox" />
+                  </td>
                   <td className="border border-gray-300 p-2 text-center">{user.username}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.email}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.password}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.phone}</td>
                   <td className="border border-gray-300 p-2 text-center">{user.address}</td>
                   <td className="border border-gray-300 p-2 text-center">
-                    <button className="mr-2" onClick={() => handleEditUser(index)}><FaEdit /></button>
-                    <button onClick={() => handleDeleteUser(index)}><FaTrash /></button>
+                    <button className="mr-2" onClick={() => handleEditUser(index)}>
+                      <FaEdit />
+                    </button>
+                    <button onClick={() => handleDeleteUser(index)}>
+                      <FaTrash />
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -191,12 +187,18 @@ const Dashboard = () => {
           <form className="mb-4" onSubmit={handleAddInvitation}>
             <input name="invitationId" type="text" placeholder="ID Undangan (Auto Generate)" className="mr-2 p-2 border" disabled />
             <input name="invitationLink" type="text" placeholder="Link Panggilan Undangan" className="mr-2 p-2 border" required />
-            <button type="submit" className="p-2 bg-blue-500 text-white">Add</button>
+            <button type="submit" className="p-2 bg-blue-500 text-white">
+              Add
+            </button>
           </form>
           <table className="min-w-full bg-white border-collapse border border-gray-300">
             <thead>
               <tr>
-                {invitations.length > 0 && <th className="border border-gray-300 p-2"><input type="checkbox" onChange={handleSelectAll} /></th>}
+                {invitations.length > 0 && (
+                  <th className="border border-gray-300 p-2">
+                    <input type="checkbox" onChange={handleSelectAll} />
+                  </th>
+                )}
                 <th className="border border-gray-300 p-2">ID Undangan</th>
                 <th className="border border-gray-300 p-2">Link Panggilan Undangan</th>
                 <th className="border border-gray-300 p-2">Action</th>
@@ -205,19 +207,23 @@ const Dashboard = () => {
             <tbody>
               {invitations.map((invitation, index) => (
                 <tr key={index}>
-                  <td className="border border-gray-300 p-2 text-center"><input type="checkbox" /></td>
+                  <td className="border border-gray-300 p-2 text-center">
+                    <input type="checkbox" />
+                  </td>
                   <td className="border border-gray-300 p-2 text-center">{invitation.invitationId}</td>
                   <td className="border border-gray-300 p-2 text-center">{invitation.invitationLink}</td>
                   <td className="border border-gray-300 p-2 text-center">
-                    <button className="mr-2" onClick={() => handleEditInvitation(index)}><FaEdit /></button>
-                    <button onClick={() => handleDeleteInvitation(index)}><FaTrash /></button>
+                    <button className="mr-2" onClick={() => handleEditInvitation(index)}>
+                      <FaEdit />
+                    </button>
+                    <button onClick={() => handleDeleteInvitation(index)}>
+                      <FaTrash />
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          
-
         </>
       );
     } else {

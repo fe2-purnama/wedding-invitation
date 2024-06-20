@@ -93,7 +93,7 @@ const VIPDesign = () => {
   useEffect(() => {
     const fetchGuests = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/guests');
+        const response = await axios.get('http://localhost:5000/guests');
         setGuests(response.data);
       } catch (error) {
         console.error('Error fetching guests:', error);
@@ -110,13 +110,14 @@ const VIPDesign = () => {
   const handleCheckName = () => {
     const guestExists = guests.some((guest) => guest.name.toLowerCase() === formData.name.toLowerCase());
     setIsNameValid(guestExists);
+    alert("Anda Terdaftar sebagai Tamu Undangan")
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isNameValid) {
       try {
-        const response = await axios.post('http://localhost:3000/attend', formData);
+        const response = await axios.post('http://localhost:5000/attend', formData);
         console.log('Attendance recorded:', response.data);
         alert('RSPV Terkirim')
         // Reset form

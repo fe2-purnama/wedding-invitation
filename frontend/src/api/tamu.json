@@ -1,24 +1,37 @@
 {
   "guests": [
     {
-      "name": "ilham",
-      "id": "2244"
-    },
-    {
       "id": "8b39",
       "name": "dika"
-    }
-  ],
-  "attend": [
-    {
-      "id": "7e13",
-      "name": "ilham",
-      "attending": "hadir"
     },
     {
-      "id": "f90d",
-      "name": "dika",
-      "attending": "absen"
+      "id": "cc16",
+      "name": "tirta"
+    },
+    {
+      "id": "03c5",
+      "name": "mahmud"
+    },
+    {
+      "id": "d742",
+      "name": "rey"
+    },
+    {
+      "id": "7ec6",
+      "name": "rissa"
+    },
+    {
+      "id": "e8e5",
+      "name": "brian"
+    },
+    {
+      "id": "3028",
+      "name": "kevin"
+    },
+    {
+      "id": "c7ce",
+      "name": "hesty"
     }
-  ]
+  ],
+  "attend": []
 }
