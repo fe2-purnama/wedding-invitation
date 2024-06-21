@@ -35,12 +35,12 @@ app.use((err, req, res, next) => {
 });
 
 //Port 
-=======
+
 // app.js
 const express = require('express');
 const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
-const app = express();
+//const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
