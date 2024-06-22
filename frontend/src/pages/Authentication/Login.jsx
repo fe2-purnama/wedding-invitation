@@ -14,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:3000/auth/login`, { username, password });
+      const response = await axios.post(`http://localhost:3000/user/login`, { username, password });
       const datas = response.data;
       if (datas.message == 'Login Accepted') {
         if (datas.role == 'user') {

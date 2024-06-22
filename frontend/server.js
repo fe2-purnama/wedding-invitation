@@ -23,7 +23,7 @@ db.connect(err => {
 });
 
 // Register endpoint
-app.post('/register', (req, res) => {
+app.post('/register', (req) => {
   const { username, email, password, phone, address } = req.body;
   const sql = 'INSERT INTO users (username, email, password, phone, address) VALUES (?, ?, ?, ?, ?)';
   db.query(sql, [username, email, password, phone, address], (err, res) => {

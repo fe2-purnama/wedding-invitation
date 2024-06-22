@@ -18,7 +18,7 @@ const Profile = () => {
         const response = await fetch('https://api.example.com/user/profile', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}` // Misalnya, menggunakan token di localStorage
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}` // Misalnya, menggunakan token di localStorage
           }
         });
 

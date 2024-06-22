@@ -57,7 +57,7 @@ const Dashboard = () => {
   const fetchUsers = async () => {
     try {
       const token = sessionStorage.getItem('token');
-      const response = await axios.get('http://localhost:3000/api/v1/users', {
+      const response = await axios.get('http://localhost:3000/user', {
         //GANTI IP DARI SERVER
         headers: {
           Authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ const Dashboard = () => {
     newUser.role = 'user';
     try {
       // Replace with your actual API endpoint
-      const response = await axios.post('http://localhost:3000/auth/register', newUser);
+      const response = await axios.post('http://localhost:3000/user/register', newUser);
       // Update the state with the newly added user
       setUsers((prevUsers) => [...prevUsers, response.data]);
       // Alert success
@@ -101,7 +101,7 @@ const Dashboard = () => {
     document.querySelector('form').elements.namedItem('address').value = user.address;
     
     try {
-      const response = await axios.put(`http://localhost:3000/api/v1/users/${user.id}`, user);
+      const response = await axios.put(`http://localhost:3000/user/${user.id}`, user);
       setEditUserIndex(index);
       updatedUsers[index] = response.data;
       const updatedUsers = [...users];
@@ -116,7 +116,7 @@ const Dashboard = () => {
   const handleDeleteUser = async (index) => {
     const user = users[index];
     try {
-      await axios.delete(`http://localhost:3000/api/v1/users/${user.id}`); // Replace with your actual API endpoint
+      await axios.delete(`http://localhost:3000/user/${user.id}`); // Replace with your actual API endpoint
       const updatedUsers = users.filter((_, i) => i !== index);
       setUsers(updatedUsers);
       alert('User deleted successfully');

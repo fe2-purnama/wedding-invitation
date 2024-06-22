@@ -1,6 +1,7 @@
+const { Sequelize } = require('sequelize');
 const database = require('./library/database');
 
-const User = sequelize.define('User', {
+const User = Sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -25,7 +26,7 @@ const User = sequelize.define('User', {
   role: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
+  },
 });
 
 module.exports = User;

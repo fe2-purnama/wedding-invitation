@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios
-        .post('http://localhost:3000/auth/register', { //Ganti URL BACKEND Disini!!!
+        .post('http://localhost:3000/user/register', {
           username,
           email,
           password,
@@ -38,20 +38,6 @@ const Register = () => {
       setError('Error registering. Please try again later.');
     }
   };
-
-  // .then((response) => {
-  //   if (response === 'Username Sudah Terdaftar') {
-  //     alert('Username Sudah Terdaftar');
-  //     setUsername('');
-  //     setEmail('');
-  //     setPassword('');
-  //     setPhone('');
-  //     setAddress('');
-  //   } else {
-  //     alert('User Berhasil Registrasi');
-  //     navigate('/login');
-  //   }
-  // })
 
   return (
     <div className="w-full h-full flex items-center justify-center">
